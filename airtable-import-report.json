@@ -1,0 +1,39 @@
+{
+  "season": "2026\u20132027",
+  "counts": {
+    "Players": 4,
+    "Seasons": 1,
+    "Weeks": 18,
+    "Games": 60,
+    "Weekly Results": 72
+  },
+  "reviewItems": [
+    {
+      "game": "2026 W01 G07 \u00b7 Buccaneers @ Bengals",
+      "notes": [
+        "Score text needs review; original score and recorded spread result preserved."
+      ]
+    },
+    {
+      "game": "2026 W02 G07 \u00b7 Vikings @ Bears",
+      "notes": [
+        "Bryan original pick \"Vikiings\" does not exactly match either team; structured pick left blank.",
+        "Ed original pick \"Vikinigs\" does not exactly match either team; structured pick left blank."
+      ]
+    },
+    {
+      "game": "2026 W02 G18 \u00b7 Dolphins @ 49ers",
+      "notes": [
+        "Ed original pick \"Dolphiins\" does not exactly match either team; structured pick left blank."
+      ]
+    },
+    {
+      "game": "2026 W03 G11 \u00b7 Titans @ Giants",
+      "notes": [
+        "Ed original pick \"Titanns\" does not exactly match either team; structured pick left blank."
+      ]
+    }
+  ],
+  "verified": true,
+  "baseUrl": "https://airtable.com/apptRZHB8HOn6jU4S"
+}
