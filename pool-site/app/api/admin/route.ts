@@ -5,6 +5,7 @@ import {access,members,adminEmail} from '@/lib/access';
 import {saveWeek} from '@/lib/storage';
 import {updateRow} from '@/lib/airtable';
 import {digest} from '@/lib/password';
+import {publicOrigin} from '@/lib/origin';
 import {weekSchema,sameOrigin} from '@/lib/validation';
 import {players} from '@/lib/pool';
 export async function GET(){try{const a=await access();if(!a.admin)return NextResponse.json({error:'Administrator access required.'},{status:403});const rows=await members();return NextResponse.json({members:rows.map(r=>({player:r.fields['Player Name'],email:r.fields.Email||''}))},{headers:{'Cache-Control':'no-store'}})}catch{return NextResponse.json({error:'Unable to load player access.'},{status:503})}}
@@ -29,7 +30,7 @@ export async function POST(request:Request){
    if(b.action==='invite'){
     const token=randomBytes(32).toString('base64url');
     Object.assign(fields,{'Setup Token Hash':digest(token),'Setup Expires':new Date(Date.now()+48*3600000).toISOString()});
-    const url=new URL('/account/setup',new URL(request.url).origin);url.searchParams.set('email',email);url.searchParams.set('token',token);setupUrl=url.toString();
+    const url=new URL('/account/setup',process.env.NODE_ENV==='production'?publicOrigin():new URL(request.url).origin);url.searchParams.set('email',email);url.searchParams.set('token',token);setupUrl=url.toString();
    }
    await updateRow('Players',row.id,fields);
    return NextResponse.json({ok:true,setupUrl},{headers:{'Cache-Control':'no-store'}});

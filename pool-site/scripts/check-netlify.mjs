@@ -30,3 +30,18 @@ assert.notEqual(revision(base), revision(merged));
 assert.deepEqual(weekFromDocument(document(base)), base);
 assert.throws(() => apply({}, [{path: ['__proto__','polluted'], value: true}]));
 console.log('PASS: password hashing, forged sessions, concurrent player saves, stable revisions, and unsafe change paths.');
+
+const {sameOrigin} = await import('../lib/origin.ts');
+process.env.NODE_ENV = 'production';
+const publicUrl = 'https://cpfootballpool.netlify.app';
+const req = (origin, extra = {}) => new Request('http://localhost:3000/api/auth', {headers: {...(origin ? {origin} : {}), ...extra}});
+assert.equal(sameOrigin(req(publicUrl)), true);
+assert.equal(sameOrigin(req('https://evil.example')), false);
+assert.equal(sameOrigin(req('https://cpfootballpool.netlify.app.evil.example')), false);
+assert.equal(sameOrigin(req('http://cpfootballpool.netlify.app')), false);
+assert.equal(sameOrigin(req(null)), false);
+assert.equal(sameOrigin(req('null')), false);
+assert.equal(sameOrigin(req('https://evil.example', {'x-forwarded-host':'evil.example','x-forwarded-proto':'https'})), false);
+process.env.NODE_ENV = 'development';
+assert.equal(sameOrigin(req('http://localhost:3000')), true);
+console.log('PASS: proxied production origins, hostile/missing origins, forwarded-header spoofing, and local development.');
