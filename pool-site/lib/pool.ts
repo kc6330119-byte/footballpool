@@ -1,0 +1,9 @@
+export const players=['Bryan','Ed','Mike','Kevin'] as const;
+export type Player=typeof players[number];
+export type Game={id:string;matchup:string;teams:string[];picks:Record<Player,string>;winner:string;score:string;kickoff:string};
+export type Week={number:number;games:Game[];totalPoints:Record<Player,number|null>;recordedTotals:Record<Player,number|null>;winner:string;earnings:number;note:string;dues:Record<Player,number>;teamEarnings:Record<string,number>;actualTotal:number|null;locked:boolean;deadlineLocal:string};
+export type Pool={season:string;source:string;players:readonly string[];teams:Record<string,string[]>;weeks:Week[];finalSchedules:Record<string,string[]>};
+export function correct(w:Week,p:string){return w.games.filter(g=>g.winner&&g.winner!=='Push'&&g.picks[p as Player]===g.winner).length}
+export function standings(pool:Pool){return players.map(name=>({name,correct:pool.weeks.reduce((s,w)=>s+correct(w,name),0),wins:pool.weeks.filter(w=>w.winner===name).length,earnings:pool.weeks.reduce((s,w)=>s+(w.winner===name?w.earnings:0),0),dues:pool.weeks.reduce((s,w)=>s+w.dues[name],0)})).sort((a,b)=>b.correct-a.correct||b.earnings-a.earnings)}
+export function issues(pool:Pool){return pool.weeks.flatMap(w=>w.games.flatMap(g=>players.filter(p=>g.picks[p]&&!g.teams.includes(g.picks[p])).map(p=>({week:w.number,game:g.id,player:p,value:g.picks[p],matchup:g.matchup}))))}
+export function weeklyLeaders(w:Week){if(!w.games.length||w.games.some(g=>!g.winner))return [];const max=Math.max(...players.map(p=>correct(w,p)));let tied=players.filter(p=>correct(w,p)===max);if(tied.length>1&&w.actualTotal!==null&&tied.every(p=>w.totalPoints[p]!==null)){const distance=Math.min(...tied.map(p=>Math.abs(w.totalPoints[p]!-w.actualTotal!)));tied=tied.filter(p=>Math.abs(w.totalPoints[p]!-w.actualTotal!)===distance)}return tied}

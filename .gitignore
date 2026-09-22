@@ -1,0 +1,13 @@
+# Local workbook inputs; the site includes only the four requested players' imported data.
+*.xlsx
+*.xls
+.DS_Store
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+.wrangler/
+.sites-runtime/
+.vinext/
+*.tsbuildinfo

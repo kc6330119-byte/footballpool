@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {correct,standings,weeklyLeaders} from '../lib/pool.ts';
+import {deadlineUTC,isClosed} from '../lib/deadline.ts';
+const pool=JSON.parse(readFileSync(new URL('../lib/seed.json',import.meta.url)));
+assert.deepEqual(standings(pool).map(x=>[x.name,x.correct,x.earnings]),[['Mike',24,40],['Bryan',15,0],['Ed',15,0],['Kevin',13,0]]);
+for(const w of pool.weeks.slice(0,3))for(const p of pool.players)assert.equal(correct(w,p),w.recordedTotals[p]);
+assert.equal(correct(pool.weeks[3],'Mike'),0);
+assert.equal(new Date(deadlineUTC('2026-09-23T23:59')).toISOString(),'2026-09-24T04:59:00.000Z');
+assert.equal(new Date(deadlineUTC('2026-11-04T23:59')).toISOString(),'2026-11-05T05:59:00.000Z');
+assert.equal(isClosed(pool.weeks[2],deadlineUTC(pool.weeks[2].deadlineLocal)-1),false);
+assert.equal(isClosed(pool.weeks[2],deadlineUTC(pool.weeks[2].deadlineLocal)),true);
+const tie=structuredClone(pool.weeks[2]);tie.games=tie.games.slice(0,1);tie.games[0].winner='Tennessee';tie.actualTotal=43;
+assert.deepEqual(weeklyLeaders(tie),['Ed']);
+tie.totalPoints.Kevin=42;assert.deepEqual(weeklyLeaders(tie),['Ed','Kevin']);
+tie.games[0].winner='';assert.deepEqual(weeklyLeaders(tie),[]);
+console.log('PASS: workbook totals, blank weeks, pushes, ties, and Central-time deadlines.');
+
+if(process.argv.includes('--api')){
+ const base='http://localhost:5173';
+ const login=await fetch(base+'/signin-with-chatgpt?return_to=/',{redirect:'manual'});
+ const cookie=login.headers.get('set-cookie')?.split(';')[0];assert.ok(cookie,'Local mock sign-in should set a cookie');
+ const call=async(path,body,authenticated=true,origin=base)=>{const r=await fetch(base+path,{method:body?'POST':'GET',headers:{...(authenticated?{cookie}:{}),...(body?{'Content-Type':'application/json',origin}:{})},...(body?{body:JSON.stringify(body)}:{})});const text=await r.text();let data;try{data=JSON.parse(text)}catch{data={error:text}}return {status:r.status,data}};
+ assert.equal((await call('/api/pool',null,false)).status,401);
+ assert.equal((await call('/api/admin',null,false)).status,403);
+ let current=(await call('/api/pool')).data;assert.equal(current.access.admin,true);assert.equal(current.access.player,'Kevin');
+ const w=current.pool.weeks[2],rev=current.revisions[3],original=w.totalPoints.Kevin;
+ const payload={week:3,revision:rev,picks:Object.fromEntries(w.games.map(g=>[g.id,g.picks.Kevin])),totalPoints:original+1};
+ assert.equal((await call('/api/picks',payload,false)).status,403);
+ assert.equal((await call('/api/picks',payload,true,'https://example.invalid')).status,403);
+ assert.equal((await call('/api/picks',{...payload,picks:{...payload.picks,'3-2':'Not a team'}})).status,400);
+ const saved=await call('/api/picks',payload);assert.equal(saved.status,200,JSON.stringify(saved.data));
+ assert.equal((await call('/api/picks',payload)).status,409);
+ current=(await call('/api/pool')).data;assert.equal(current.pool.weeks[2].totalPoints.Kevin,original+1);assert.equal(current.pool.weeks[2].totalPoints.Mike,w.totalPoints.Mike);
+ assert.equal((await call('/api/picks',{...payload,revision:current.revisions[3],totalPoints:original})).status,200);
+ const past=current.pool.weeks[0];assert.equal((await call('/api/picks',{week:1,revision:current.revisions[1],picks:{},totalPoints:past.totalPoints.Kevin})).status,409);
+ current=(await call('/api/pool')).data;
+ const adminWeek=structuredClone(current.pool.weeks[3]);adminWeek.note='Local persistence check';
+ const adminSaved=await call('/api/admin',{week:adminWeek,revision:current.revisions[4]});assert.equal(adminSaved.status,200,JSON.stringify(adminSaved.data));
+ current=(await call('/api/pool')).data;assert.equal(current.pool.weeks[3].note,'Local persistence check');
+ adminWeek.note='';assert.equal((await call('/api/admin',{week:adminWeek,revision:current.revisions[4]})).status,200);
+ console.log('PASS: sign-in, anonymous denial, origin checks, invalid picks, durable save/readback, conflict rejection, locked weeks, admin updates, and test-data restoration.');
+}

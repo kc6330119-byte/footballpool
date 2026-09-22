@@ -1,0 +1,1728 @@
+{
+  "season": "2026\u20132027",
+  "source": "ColinsPhillipsBowl-2026-2027.xlsx",
+  "players": [
+    "Bryan",
+    "Ed",
+    "Mike",
+    "Kevin"
+  ],
+  "teams": {
+    "Young Guns": [
+      "Kevin",
+      "Mike"
+    ],
+    "Old Farts": [
+      "Ed",
+      "Bryan"
+    ]
+  },
+  "weeks": [
+    {
+      "number": 1,
+      "games": [
+        {
+          "id": "1-2",
+          "matchup": "Louisville @ Ole Miss (-7) (September 6)",
+          "teams": [
+            "Louisville",
+            "Ole Miss"
+          ],
+          "picks": {
+            "Bryan": "Ole Miss",
+            "Ed": "Ole Miss",
+            "Mike": "Louisville",
+            "Kevin": "Ole Miss"
+          },
+          "winner": "Louisville",
+          "score": "Ole Miss 41 - Louisville 38",
+          "kickoff": ""
+        },
+        {
+          "id": "1-3",
+          "matchup": "SMU (-3) @ FSU (September 7)",
+          "teams": [
+            "SMU",
+            "FSU"
+          ],
+          "picks": {
+            "Bryan": "SMU",
+            "Ed": "SMU",
+            "Mike": "SMU",
+            "Kevin": "SMU"
+          },
+          "winner": "Push",
+          "score": "SMU 27 - FSU 24",
+          "kickoff": ""
+        },
+        {
+          "id": "1-4",
+          "matchup": "Oklahoma (-5.5) @ Michigan (September 12)",
+          "teams": [
+            "Oklahoma",
+            "Michigan"
+          ],
+          "picks": {
+            "Bryan": "Oklahoma",
+            "Ed": "Oklahoma",
+            "Mike": "Michigan",
+            "Kevin": "Oklahoma"
+          },
+          "winner": "Michigan",
+          "score": "Michigan 17 - Oklahoma 10",
+          "kickoff": ""
+        },
+        {
+          "id": "1-5",
+          "matchup": "Alabama (-10.5) @ Kentucky (September 12)",
+          "teams": [
+            "Alabama",
+            "Kentucky"
+          ],
+          "picks": {
+            "Bryan": "Alabama",
+            "Ed": "Kentucky",
+            "Mike": "Alabama",
+            "Kevin": "Kentucky"
+          },
+          "winner": "Alabama",
+          "score": "Alabama 45 - Kentucky 17",
+          "kickoff": ""
+        },
+        {
+          "id": "1-6",
+          "matchup": "Patriots @ Seahawks (-3.5) (September 9)",
+          "teams": [
+            "Patriots",
+            "Seahawks"
+          ],
+          "picks": {
+            "Bryan": "Seahawks",
+            "Ed": "Seahawks",
+            "Mike": "Patriots",
+            "Kevin": "Seahawks"
+          },
+          "winner": "Patriots",
+          "score": "Patriots 10 - Seahawks 13",
+          "kickoff": ""
+        },
+        {
+          "id": "1-7",
+          "matchup": "49ers @ Rams (-3.5) (September 10)",
+          "teams": [
+            "49ers",
+            "Rams"
+          ],
+          "picks": {
+            "Bryan": "Rams",
+            "Ed": "Rams",
+            "Mike": "49ers",
+            "Kevin": "Rams"
+          },
+          "winner": "49ers",
+          "score": "49ers 27 - Rams 7",
+          "kickoff": ""
+        },
+        {
+          "id": "1-8",
+          "matchup": "Buccaneers @ Bengals (-3.5)",
+          "teams": [
+            "Buccaneers",
+            "Bengals"
+          ],
+          "picks": {
+            "Bryan": "Bengals",
+            "Ed": "Buccaneers",
+            "Mike": "Bengals",
+            "Kevin": "Bengals"
+          },
+          "winner": "Bengals",
+          "score": "Bentals 33 - Bucccaneers 27",
+          "kickoff": ""
+        },
+        {
+          "id": "1-9",
+          "matchup": "Saints @ Lions (-7)",
+          "teams": [
+            "Saints",
+            "Lions"
+          ],
+          "picks": {
+            "Bryan": "Lions",
+            "Ed": "Lions",
+            "Mike": "Lions",
+            "Kevin": "Lions"
+          },
+          "winner": "Saints",
+          "score": "Lions 31 - Saints 30",
+          "kickoff": ""
+        },
+        {
+          "id": "1-10",
+          "matchup": "Jets @ Titans (-1.5)",
+          "teams": [
+            "Jets",
+            "Titans"
+          ],
+          "picks": {
+            "Bryan": "Titans",
+            "Ed": "Jets",
+            "Mike": "Jets",
+            "Kevin": "Jets"
+          },
+          "winner": "Jets",
+          "score": "Jets 23 - Titans 10",
+          "kickoff": ""
+        },
+        {
+          "id": "1-11",
+          "matchup": "Ravens (-3.5) @ Colts",
+          "teams": [
+            "Ravens",
+            "Colts"
+          ],
+          "picks": {
+            "Bryan": "Ravens",
+            "Ed": "Ravens",
+            "Mike": "Ravens",
+            "Kevin": "Colts"
+          },
+          "winner": "Ravens",
+          "score": "Ravens 41 - Colts 23",
+          "kickoff": ""
+        },
+        {
+          "id": "1-12",
+          "matchup": "Falcons @ Steelers (-3)",
+          "teams": [
+            "Falcons",
+            "Steelers"
+          ],
+          "picks": {
+            "Bryan": "Falcons",
+            "Ed": "Falcons",
+            "Mike": "Falcons",
+            "Kevin": "Steelers"
+          },
+          "winner": "Steelers",
+          "score": "Steelers 20 - Falcons 13",
+          "kickoff": ""
+        },
+        {
+          "id": "1-13",
+          "matchup": "Bears (-2.5) @ Panthers",
+          "teams": [
+            "Bears",
+            "Panthers"
+          ],
+          "picks": {
+            "Bryan": "Panthers",
+            "Ed": "Bears",
+            "Mike": "Panthers",
+            "Kevin": "Panthers"
+          },
+          "winner": "Bears",
+          "score": "Bears 59 - Panthers 37",
+          "kickoff": ""
+        },
+        {
+          "id": "1-14",
+          "matchup": "Browns @ Jaguars (-7.5)",
+          "teams": [
+            "Browns",
+            "Jaguars"
+          ],
+          "picks": {
+            "Bryan": "Jaguars",
+            "Ed": "Browns",
+            "Mike": "Jaguars",
+            "Kevin": "Browns"
+          },
+          "winner": "Jaguars",
+          "score": "Jaguars 34 - Browns 10",
+          "kickoff": ""
+        },
+        {
+          "id": "1-15",
+          "matchup": "Bills (-1.5) @ Texans",
+          "teams": [
+            "Bills",
+            "Texans"
+          ],
+          "picks": {
+            "Bryan": "Texans",
+            "Ed": "Bills",
+            "Mike": "Bills",
+            "Kevin": "Bills"
+          },
+          "winner": "Bills",
+          "score": "Bills 36 - Texans 31",
+          "kickoff": ""
+        },
+        {
+          "id": "1-16",
+          "matchup": "Dolphins @ Raiders (-3.5)",
+          "teams": [
+            "Dolphins",
+            "Raiders"
+          ],
+          "picks": {
+            "Bryan": "Raiders",
+            "Ed": "Dolphins",
+            "Mike": "Raiders",
+            "Kevin": "Raiders"
+          },
+          "winner": "Raiders",
+          "score": "Raiders 27 - Dolphins 13",
+          "kickoff": ""
+        },
+        {
+          "id": "1-17",
+          "matchup": "Packers @ Vikings (-1.5)",
+          "teams": [
+            "Packers",
+            "Vikings"
+          ],
+          "picks": {
+            "Bryan": "Packers",
+            "Ed": "Vikings",
+            "Mike": "Vikings",
+            "Kevin": "Packers"
+          },
+          "winner": "Vikings",
+          "score": "Vikings 39 - Packers 22",
+          "kickoff": ""
+        },
+        {
+          "id": "1-18",
+          "matchup": "Commanders @ Eagles (-4.5)",
+          "teams": [
+            "Commanders",
+            "Eagles"
+          ],
+          "picks": {
+            "Bryan": "Eagles",
+            "Ed": "Commanders",
+            "Mike": "Eagles",
+            "Kevin": "Commanders"
+          },
+          "winner": "Commanders",
+          "score": "Eagles 24 - Commanders 22",
+          "kickoff": ""
+        },
+        {
+          "id": "1-19",
+          "matchup": "Cardinals @ Chargers (-10.5)",
+          "teams": [
+            "Cardinals",
+            "Chargers"
+          ],
+          "picks": {
+            "Bryan": "Chargers",
+            "Ed": "Cardinals",
+            "Mike": "Cardinals",
+            "Kevin": "Cardinals"
+          },
+          "winner": "Cardinals",
+          "score": "Cardinals 26 - Chargers 14",
+          "kickoff": ""
+        },
+        {
+          "id": "1-20",
+          "matchup": "Cowboys (-2.5) @ Giants",
+          "teams": [
+            "Cowboys",
+            "Giants"
+          ],
+          "picks": {
+            "Bryan": "Cowboys",
+            "Ed": "Giants",
+            "Mike": "Cowboys",
+            "Kevin": "Cowboys"
+          },
+          "winner": "Giants",
+          "score": "Giants 28 - Cowboys 20",
+          "kickoff": ""
+        },
+        {
+          "id": "1-21",
+          "matchup": "Broncos @ Chiefs (-3)",
+          "teams": [
+            "Broncos",
+            "Chiefs"
+          ],
+          "picks": {
+            "Bryan": "Broncos",
+            "Ed": "Broncos",
+            "Mike": "Chiefs",
+            "Kevin": "Broncos"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        }
+      ],
+      "totalPoints": {
+        "Bryan": 34.5,
+        "Ed": 44.5,
+        "Mike": 44.5,
+        "Kevin": 44.5
+      },
+      "recordedTotals": {
+        "Bryan": 5,
+        "Ed": 8,
+        "Mike": 13,
+        "Kevin": 7
+      },
+      "winner": "Mike",
+      "earnings": 20,
+      "note": "Crushed the Competition",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 20,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": true,
+      "deadlineLocal": "2026-09-09T23:59"
+    },
+    {
+      "number": 2,
+      "games": [
+        {
+          "id": "2-2",
+          "matchup": "LSU (-3) @ Ole Miss",
+          "teams": [
+            "LSU",
+            "Ole Miss"
+          ],
+          "picks": {
+            "Bryan": "LSU",
+            "Ed": "LSU",
+            "Mike": "LSU",
+            "Kevin": "LSU"
+          },
+          "winner": "Ole Miss",
+          "score": "Ole Miss 32 - LSU 24",
+          "kickoff": ""
+        },
+        {
+          "id": "2-3",
+          "matchup": "FSU @ Alabama (-20.5)",
+          "teams": [
+            "FSU",
+            "Alabama"
+          ],
+          "picks": {
+            "Bryan": "Alabama",
+            "Ed": "FSU",
+            "Mike": "FSU",
+            "Kevin": "Alabama"
+          },
+          "winner": "FSU",
+          "score": "Alabama 50 - FSU 36",
+          "kickoff": ""
+        },
+        {
+          "id": "2-4",
+          "matchup": "SMU @ Louisvile (-1.5)",
+          "teams": [
+            "SMU",
+            "Louisville"
+          ],
+          "picks": {
+            "Bryan": "Louisville",
+            "Ed": "SMU",
+            "Mike": "Louisville",
+            "Kevin": "SMU"
+          },
+          "winner": "Louisville",
+          "score": "Louisville 41 - SMU 31",
+          "kickoff": ""
+        },
+        {
+          "id": "2-5",
+          "matchup": "Florida (-2.5) @ Auburn",
+          "teams": [
+            "Florida",
+            "Auburn"
+          ],
+          "picks": {
+            "Bryan": "Florida",
+            "Ed": "Florida",
+            "Mike": "Florida",
+            "Kevin": "Florida"
+          },
+          "winner": "Florida",
+          "score": "Florida 44 - Auburn 39",
+          "kickoff": ""
+        },
+        {
+          "id": "2-6",
+          "matchup": "Lions @ Bills (-4.5)",
+          "teams": [
+            "Lions",
+            "Bills"
+          ],
+          "picks": {
+            "Bryan": "Bills",
+            "Ed": "Lions",
+            "Mike": "Bills",
+            "Kevin": "Bills"
+          },
+          "winner": "Bills",
+          "score": "Bills 41 - Lions 31",
+          "kickoff": ""
+        },
+        {
+          "id": "2-7",
+          "matchup": "Panthers (-1.5) @ Falcons",
+          "teams": [
+            "Panthers",
+            "Falcons"
+          ],
+          "picks": {
+            "Bryan": "Panthers",
+            "Ed": "Falcons",
+            "Mike": "Panthers",
+            "Kevin": "Panthers"
+          },
+          "winner": "Panthers",
+          "score": "Panthers 34 - Falcons 3",
+          "kickoff": ""
+        },
+        {
+          "id": "2-8",
+          "matchup": "Vikings @ Bears (-5.5)",
+          "teams": [
+            "Vikings",
+            "Bears"
+          ],
+          "picks": {
+            "Bryan": "Vikiings",
+            "Ed": "Vikinigs",
+            "Mike": "Bears",
+            "Kevin": "Bears"
+          },
+          "winner": "Vikings",
+          "score": "Vikings 9 - Bears 3",
+          "kickoff": ""
+        },
+        {
+          "id": "2-9",
+          "matchup": "Eagles (-7) @ Titans",
+          "teams": [
+            "Eagles",
+            "Titans"
+          ],
+          "picks": {
+            "Bryan": "Eagles",
+            "Ed": "Eagles",
+            "Mike": "Eagles",
+            "Kevin": "Eagles"
+          },
+          "winner": "Titans",
+          "score": "Eagles 24 - Titans 20",
+          "kickoff": ""
+        },
+        {
+          "id": "2-10",
+          "matchup": "Steelers @ Patriots (-5.5)",
+          "teams": [
+            "Steelers",
+            "Patriots"
+          ],
+          "picks": {
+            "Bryan": "Patriots",
+            "Ed": "Steelers",
+            "Mike": "Steelers",
+            "Kevin": "Patriots"
+          },
+          "winner": "Patriots",
+          "score": "Patriots 20 - Steelers 3",
+          "kickoff": ""
+        },
+        {
+          "id": "2-11",
+          "matchup": "Packers (-4.5) @ Jets",
+          "teams": [
+            "Packers",
+            "Jets"
+          ],
+          "picks": {
+            "Bryan": "Packers",
+            "Ed": "Packers",
+            "Mike": "Jets",
+            "Kevin": "Jets"
+          },
+          "winner": "Jets",
+          "score": "Packers 20 - Jets 17",
+          "kickoff": ""
+        },
+        {
+          "id": "2-12",
+          "matchup": "Browns @ Buccaneers (-8.5)",
+          "teams": [
+            "Browns",
+            "Buccaneers"
+          ],
+          "picks": {
+            "Bryan": "Buccaneers",
+            "Ed": "Browns",
+            "Mike": "Buccaneers",
+            "Kevin": "Buccaneers"
+          },
+          "winner": "Browns",
+          "score": "Browns 23 - Buccaneers 19",
+          "kickoff": ""
+        },
+        {
+          "id": "2-13",
+          "matchup": "Saints @ Ravens (-8.5)",
+          "teams": [
+            "Saints",
+            "Ravens"
+          ],
+          "picks": {
+            "Bryan": "Ravens",
+            "Ed": "Saints",
+            "Mike": "Ravens",
+            "Kevin": "Ravens"
+          },
+          "winner": "Saints",
+          "score": "Saints 24 - Ravens 17",
+          "kickoff": ""
+        },
+        {
+          "id": "2-14",
+          "matchup": "Bengals @ Texans (-3)",
+          "teams": [
+            "Bengals",
+            "Texans"
+          ],
+          "picks": {
+            "Bryan": "Bengals",
+            "Ed": "Bengals",
+            "Mike": "Bengals",
+            "Kevin": "Bengals"
+          },
+          "winner": "Bengals",
+          "score": "Bengals 20 - Texans 6",
+          "kickoff": ""
+        },
+        {
+          "id": "2-15",
+          "matchup": "Jaguars @ Broncos (-2.5)",
+          "teams": [
+            "Jaguars",
+            "Broncos"
+          ],
+          "picks": {
+            "Bryan": "Jaguars",
+            "Ed": "Broncos",
+            "Mike": "Jaguars",
+            "Kevin": "Jaguars"
+          },
+          "winner": "Broncos",
+          "score": "Broncos 20 - Jaguars 13",
+          "kickoff": ""
+        },
+        {
+          "id": "2-16",
+          "matchup": "Raiders @ Chargers (-7)",
+          "teams": [
+            "Raiders",
+            "Chargers"
+          ],
+          "picks": {
+            "Bryan": "Chargers",
+            "Ed": "Raiders",
+            "Mike": "Raiders",
+            "Kevin": "Chargers"
+          },
+          "winner": "Raiders",
+          "score": "Raiders 26 - Chargers 14",
+          "kickoff": ""
+        },
+        {
+          "id": "2-17",
+          "matchup": "Commanders @ Cowboys (-3.5)",
+          "teams": [
+            "Commanders",
+            "Cowboys"
+          ],
+          "picks": {
+            "Bryan": "Cowboys",
+            "Ed": "Commanders",
+            "Mike": "Commanders",
+            "Kevin": "Commanders"
+          },
+          "winner": "Cowboys",
+          "score": "Cowboys 37 - Commanders 20",
+          "kickoff": ""
+        },
+        {
+          "id": "2-18",
+          "matchup": "Seahawks (-4.5) @ Cardinals",
+          "teams": [
+            "Seahawks",
+            "Cardinals"
+          ],
+          "picks": {
+            "Bryan": "Seahawks",
+            "Ed": "Cardinals",
+            "Mike": "Cardinals",
+            "Kevin": "Cardinals"
+          },
+          "winner": "Seahawks",
+          "score": "Seahawks 31 - Cardinals 7",
+          "kickoff": ""
+        },
+        {
+          "id": "2-19",
+          "matchup": "Dolphins @ 49ers (-13.5)",
+          "teams": [
+            "Dolphins",
+            "49ers"
+          ],
+          "picks": {
+            "Bryan": "49ers",
+            "Ed": "Dolphiins",
+            "Mike": "49ers",
+            "Kevin": "Dolphins"
+          },
+          "winner": "49ers",
+          "score": "49ers 35 - Dolphins 13",
+          "kickoff": ""
+        },
+        {
+          "id": "2-20",
+          "matchup": "Colts @ Chiefs (-6.5)",
+          "teams": [
+            "Colts",
+            "Chiefs"
+          ],
+          "picks": {
+            "Bryan": "Chiefs",
+            "Ed": "Chiefs",
+            "Mike": "Colts",
+            "Kevin": "Chiefs"
+          },
+          "winner": "Colts",
+          "score": "Chiefs 33 - Colts 30",
+          "kickoff": ""
+        },
+        {
+          "id": "2-21",
+          "matchup": "Giants @ Rams (-7)",
+          "teams": [
+            "Giants",
+            "Rams"
+          ],
+          "picks": {
+            "Bryan": "Rams",
+            "Ed": "Giants",
+            "Mike": "Rams",
+            "Kevin": "Giants"
+          },
+          "winner": "Rams",
+          "score": "Rams 28 - Giants 6",
+          "kickoff": ""
+        }
+      ],
+      "totalPoints": {
+        "Bryan": 47.5,
+        "Ed": 37,
+        "Mike": 50.5,
+        "Kevin": 52
+      },
+      "recordedTotals": {
+        "Bryan": 10,
+        "Ed": 7,
+        "Mike": 11,
+        "Kevin": 6
+      },
+      "winner": "Mike",
+      "earnings": 20,
+      "note": "Two in a roll",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 20,
+        "Old Farts": 0
+      },
+      "actualTotal": 34,
+      "locked": true,
+      "deadlineLocal": "2026-09-16T23:59"
+    },
+    {
+      "number": 3,
+      "games": [
+        {
+          "id": "3-2",
+          "matchup": "Texas (-5.5) at Tennessee",
+          "teams": [
+            "Texas",
+            "Tennessee"
+          ],
+          "picks": {
+            "Bryan": "Tennessee",
+            "Ed": "Tennessee",
+            "Mike": "Tennessee",
+            "Kevin": "Tennessee"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-3",
+          "matchup": "Oklahoma @ Georgia (-13.5)",
+          "teams": [
+            "Oklahoma",
+            "Georgia"
+          ],
+          "picks": {
+            "Bryan": "Georgia",
+            "Ed": "Georgia",
+            "Mike": "Georgia",
+            "Kevin": "Georgia"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-4",
+          "matchup": "Ole Miss @ Florida (-3.5)",
+          "teams": [
+            "Ole Miss",
+            "Florida"
+          ],
+          "picks": {
+            "Bryan": "Ole Miss",
+            "Ed": "Florida",
+            "Mike": "Ole Miss",
+            "Kevin": "Ole Miss"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-5",
+          "matchup": "Texas A&M @ LSU (-8.5)",
+          "teams": [
+            "Texas A&M",
+            "LSU"
+          ],
+          "picks": {
+            "Bryan": "LSU",
+            "Ed": "LSU",
+            "Mike": "LSU",
+            "Kevin": "Texas A&M"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-6",
+          "matchup": "Falcons @ Packers (-6.5)",
+          "teams": [
+            "Falcons",
+            "Packers"
+          ],
+          "picks": {
+            "Bryan": "Packers",
+            "Ed": "Packers",
+            "Mike": "Packers",
+            "Kevin": "Falcons"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-7",
+          "matchup": "Chargers @ Bills (-7)",
+          "teams": [
+            "Chargers",
+            "Bills"
+          ],
+          "picks": {
+            "Bryan": "Bills",
+            "Ed": "Bills",
+            "Mike": "Chargers",
+            "Kevin": "Bills"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-8",
+          "matchup": "Panthers (-2.5) @ Browns",
+          "teams": [
+            "Panthers",
+            "Browns"
+          ],
+          "picks": {
+            "Bryan": "Panthers",
+            "Ed": "Browns",
+            "Mike": "Panthers",
+            "Kevin": "Panthers"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-9",
+          "matchup": "Jets @ Lions (-6.5)",
+          "teams": [
+            "Jets",
+            "Lions"
+          ],
+          "picks": {
+            "Bryan": "Lions",
+            "Ed": "Lions",
+            "Mike": "Jets",
+            "Kevin": "Lions"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-10",
+          "matchup": "Texans (-2.5) @ Colts",
+          "teams": [
+            "Texans",
+            "Colts"
+          ],
+          "picks": {
+            "Bryan": "Colts",
+            "Ed": "Texans",
+            "Mike": "Colts",
+            "Kevin": "Texans"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-11",
+          "matchup": "Chiefs (-11.5) @ Dolphins",
+          "teams": [
+            "Chiefs",
+            "Dolphins"
+          ],
+          "picks": {
+            "Bryan": "Chiefs",
+            "Ed": "Chiefs",
+            "Mike": "Dolphins",
+            "Kevin": "Chiefs"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-12",
+          "matchup": "Titans @ Giants (-3.5)",
+          "teams": [
+            "Titans",
+            "Giants"
+          ],
+          "picks": {
+            "Bryan": "Titans",
+            "Ed": "Titanns",
+            "Mike": "Titans",
+            "Kevin": "Giants"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-13",
+          "matchup": "Bengals (-3.5) @ Steelers",
+          "teams": [
+            "Bengals",
+            "Steelers"
+          ],
+          "picks": {
+            "Bryan": "Bengals",
+            "Ed": "Bengals",
+            "Mike": "Bengals",
+            "Kevin": "Bengals"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-14",
+          "matchup": "Seahawks (-7) @ Commanders",
+          "teams": [
+            "Seahawks",
+            "Commanders"
+          ],
+          "picks": {
+            "Bryan": "Seahawks",
+            "Ed": "Seahawks",
+            "Mike": "Commanders",
+            "Kevin": "Commanders"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-15",
+          "matchup": "Patriots @ Jaguars (-3)",
+          "teams": [
+            "Patriots",
+            "Jaguars"
+          ],
+          "picks": {
+            "Bryan": "Jaguars",
+            "Ed": "Jaguars",
+            "Mike": "Jaguars",
+            "Kevin": "Jaguars"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-16",
+          "matchup": "Cardinals @ 49ers (-8.5)",
+          "teams": [
+            "Cardinals",
+            "49ers"
+          ],
+          "picks": {
+            "Bryan": "49ers",
+            "Ed": "49ers",
+            "Mike": "49ers",
+            "Kevin": "49ers"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-17",
+          "matchup": "Vikings (-1.5) @ Buccaneers",
+          "teams": [
+            "Vikings",
+            "Buccaneers"
+          ],
+          "picks": {
+            "Bryan": "Vikings",
+            "Ed": "Vikings",
+            "Mike": "Buccaneers",
+            "Kevin": "Buccaneers"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-18",
+          "matchup": "Ravens (-3) @ Cowboys",
+          "teams": [
+            "Ravens",
+            "Cowboys"
+          ],
+          "picks": {
+            "Bryan": "Ravens",
+            "Ed": "Ravens",
+            "Mike": "Cowboys",
+            "Kevin": "Cowboys"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-19",
+          "matchup": "Raiders @ Saints (-3)",
+          "teams": [
+            "Raiders",
+            "Saints"
+          ],
+          "picks": {
+            "Bryan": "Saints",
+            "Ed": "Saints",
+            "Mike": "Raiders",
+            "Kevin": "Saints"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-20",
+          "matchup": "Rams (-1.5) @ Broncos",
+          "teams": [
+            "Rams",
+            "Broncos"
+          ],
+          "picks": {
+            "Bryan": "Rams",
+            "Ed": "Rams",
+            "Mike": "Rams",
+            "Kevin": "Rams"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        },
+        {
+          "id": "3-21",
+          "matchup": "Eagles (-3.5) @ Bears",
+          "teams": [
+            "Eagles",
+            "Bears"
+          ],
+          "picks": {
+            "Bryan": "Eagles",
+            "Ed": "Bears",
+            "Mike": "Eagles",
+            "Kevin": "Eagles"
+          },
+          "winner": "",
+          "score": "",
+          "kickoff": ""
+        }
+      ],
+      "totalPoints": {
+        "Bryan": 40,
+        "Ed": 44,
+        "Mike": 31.5,
+        "Kevin": 45.5
+      },
+      "recordedTotals": {
+        "Bryan": 0,
+        "Ed": 0,
+        "Mike": 0,
+        "Kevin": 0
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-09-23T23:59"
+    },
+    {
+      "number": 4,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-09-30T23:59"
+    },
+    {
+      "number": 5,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-10-07T23:59"
+    },
+    {
+      "number": 6,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-10-14T23:59"
+    },
+    {
+      "number": 7,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-10-21T23:59"
+    },
+    {
+      "number": 8,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-10-28T23:59"
+    },
+    {
+      "number": 9,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-11-04T23:59"
+    },
+    {
+      "number": 10,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-11-11T23:59"
+    },
+    {
+      "number": 11,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-11-18T23:59"
+    },
+    {
+      "number": 12,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-11-25T23:59"
+    },
+    {
+      "number": 13,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-12-02T23:59"
+    },
+    {
+      "number": 14,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-12-09T23:59"
+    },
+    {
+      "number": 15,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-12-16T23:59"
+    },
+    {
+      "number": 16,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-12-23T23:59"
+    },
+    {
+      "number": 17,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2026-12-30T23:59"
+    },
+    {
+      "number": 18,
+      "games": [],
+      "totalPoints": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "recordedTotals": {
+        "Bryan": null,
+        "Ed": null,
+        "Mike": null,
+        "Kevin": null
+      },
+      "winner": "",
+      "earnings": 0,
+      "note": "",
+      "dues": {
+        "Ed": 5,
+        "Kevin": 5,
+        "Bryan": 5,
+        "Mike": 5
+      },
+      "teamEarnings": {
+        "Young Guns": 0,
+        "Old Farts": 0
+      },
+      "actualTotal": null,
+      "locked": false,
+      "deadlineLocal": "2027-01-06T23:59"
+    }
+  ],
+  "finalSchedules": {
+    "14": [
+      "UNLV vs Boise State (@ Boise, ID)",
+      "BYI vs Texas Tech (@Arlington, TX)",
+      "Miami (OH) vs W. Michigan (@ Detroit)",
+      "Georgia vs Alabama (@ Atlanta)",
+      "Indiana vs Ohio State (@ Indianapolis)",
+      "Duke vs Virginia (@ Charlotte)",
+      "Cowboys @ Lions",
+      "Titans @ Browns",
+      "Seahawks @ Falcons",
+      "Colts @ Jaguars",
+      "Commanders @ Vikings",
+      "Bengals @ Bills",
+      "Saints @ Buccaneers",
+      "Steelers @ Ravens",
+      "Dolphins @ Jets",
+      "Broncos @ Raiders",
+      "Rams @ Cardinals",
+      "Bears @ Packers",
+      "Texans @ Chiefs",
+      "Eagles @ Chargers"
+    ],
+    "15": [
+      "Army @ Navy",
+      "Falcons @ Buccaneers",
+      "Ravens @ Bengals",
+      "Raiders @ Eagles",
+      "Cardinals @ Texans",
+      "Chargers @ Chiefs",
+      "Bills @ Patriots",
+      "Jets @ Jaguars",
+      "Commanders @ Giants",
+      "Browns @ Bears",
+      "Panthers @ Saints",
+      "Lions @ Rams",
+      "Colts @ Seahawks",
+      "Packers @ Broncos",
+      "Titans @ 49ers",
+      "Vikings @ Cowboys",
+      "Dolphins @ Steelers"
+    ],
+    "16": [
+      "CFB 1st Round",
+      "CFB 1st Round",
+      "CFB 1st Round",
+      "CFB 1st Round",
+      "Rams @ Seahawks",
+      "Packers @ Bears",
+      "Eagles @ Commanders",
+      "Chargers @ Cowboys",
+      "Vikings @ Giants",
+      "Patriots @ Ravens",
+      "Buccaneers @ Panthers",
+      "Jets @ Saints",
+      "Bills @ Browns",
+      "Chiefs @ Titans",
+      "Jaguars @ Broncos",
+      "Falccons @ Cardinals",
+      "Raiders @ Texans",
+      "Steelers @ Lions",
+      "Bengals @ Dolphins",
+      "49ers @ Colts"
+    ],
+    "17": [
+      "CFB Quarterfinals",
+      "CFB Quarterfinals",
+      "CFB Quarterfinals",
+      "CFB Quarterfinals",
+      "Cowboys @ Commanders",
+      "Lions @ Vikings",
+      "Broncos @ Chiefs",
+      "Buccaneers @ Dolphins",
+      "Patriots @ Jets",
+      "Steelers @ Browns",
+      "Jaguars @ Colts",
+      "Saints @ Titans",
+      "Ravens @ Packers",
+      "Giants @ Raiders",
+      "Texans @ Chargers",
+      "Seahawks @ Panthers",
+      "Cardinals @ Bengals",
+      "Eagles @ Bills",
+      "Bears @ 49ers",
+      "Rams @ Falcons"
+    ],
+    "18": [
+      "CFB Semifinals",
+      "CFB Semifinals",
+      "Panthers @ Buccaneers",
+      "Colts @ Texans",
+      "Browns @ Bengals",
+      "Saints @ Falcons",
+      "Packers @ Vikings",
+      "Titans @ Jaguars",
+      "Seahawks @ 49ers",
+      "Cardinals @ Rams",
+      "Cowboys @ Giants",
+      "Ravens @ Steelers",
+      "Chiefs @ Raiders",
+      "Commanders @ Eagles",
+      "Dolphins @ Patriots",
+      "Lions @ Bears",
+      "Chargers @ Broncos",
+      "Jets @ Bills"
+    ]
+  }
+}
