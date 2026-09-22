@@ -1,6 +1,6 @@
 # Publish the football pool on Netlify
 
-The root `netlify.toml` configures the base directory (`pool-site`), build (`npm run build`), publish directory (`.next`), and Node 22. Netlify detects standard Next.js and installs its OpenNext adapter. No redirect-to-index.html rule is needed.
+The root `netlify.toml` configures the base directory (`pool-site`), build (`npm run build`), publish directory (`.next`), and Node 22. The configuration explicitly enables Netlify’s OpenNext adapter so existing projects configured as plain static sites also create server routes. No redirect-to-index.html rule is needed.
 
 ## Settings to add
 
