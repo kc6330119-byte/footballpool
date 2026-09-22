@@ -3,9 +3,10 @@ The application is in `pool-site/`. It includes the active 2026–2027 pool and 
 
 See [the application README](pool-site/README.md) for local development and pool rules.
 
-## Hosting status
-The current application was built for Cloudflare Workers through Sites. Its storage uses Cloudflare D1, and authentication uses Sites-provided identity headers.
-It is **not yet compatible with Netlify**. Moving it to Netlify requires replacing or adapting the server runtime, database binding, and authentication. Merely setting a build directory will not preserve working sign-in and saved picks.
+## Hosting
+The application now uses standard Next.js on Netlify, Airtable storage, and email/password sign-in. See [NETLIFY-SETUP.md](NETLIFY-SETUP.md) for deployment variables and first administrator setup.
+
+The five imported Airtable tables are starting data. Website saves are committed atomically as records in the new Pool Changes table and applied when reading the pool. Manage current picks and earnings through the website after migration.
 
 ## Historical sources
 Original Excel files stay local and are not committed. The imported archive contains only Bryan, Kevin, Mike, and Ed.

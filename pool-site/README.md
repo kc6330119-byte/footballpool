@@ -3,15 +3,12 @@ Football pool for the 2026–2027 season, imported from the original workbook in
 
 ## Run
 Install dependencies with npm ci, then npm run dev. Node 22.13+ is required.
-The local preview provides a mock ChatGPT sign-in. Local ADMIN_EMAIL is seedy@sites.test; it is never used in hosted configuration.
-Production ADMIN_EMAIL is configured as a Sites runtime secret.
+Copy server settings into `.env.local` for local development. See [Netlify setup](../NETLIFY-SETUP.md) for deployment and administrator account creation.
 
 ## Storage and permissions
-Cloudflare D1 stores weekly data and player assignments. The workbook is an immutable initial import, seeded with INSERT OR IGNORE.
-Only the administrator can manage games, scores, earnings, deadlines, and player email assignments.
-Players sign in with ChatGPT and can edit only their own picks before the deadline.
-Each save includes a revision to prevent overwriting concurrent changes.
-Browser storage is not used for pool records.
+Airtable holds the imported season and an append-only Pool Changes history of website saves. Players use email/password sign-in. Only Kevin can manage games, scores, earnings, deadlines, and player access. Players can edit only their own picks before the deadline. Passwords are stored as salted hashes, and server-signed sessions expire after seven days.
+
+Each save has a revision check and commits all changed fields in one record. Different players' changes merge without replacing each other's picks. Truly simultaneous edits to the same field use the last change; Airtable has no transactional compare-and-swap. Browser storage is not used for pool records.
 
 ## Rules
 One point for a correct winner against the listed spread. Pushes earn zero, consistent with the workbook.
@@ -27,17 +24,11 @@ Blank future-week formula totals of 20 are excluded.
 Week 1 is missing Broncos–Chiefs result. Recorded winners/payouts remain Mike, $20 each for Weeks 1 and 2.
 Dues are scheduled contributions, not payments received.
 
-## Database
-Schema: db/schema.ts. Generate migrations with npm run db:generate.
-Build with npm run build, then apply each new local migration using Wrangler with the generated dist/server/wrangler.json and --persist-to .wrangler/state.
-Production publishing applies migrations automatically.
-Export backup downloads the current pool as JSON.
-
-## Sharing
-New hosting is private to the owner. To enable other players later, add their sign-in email in Administration AND grant them viewer access through Sites sharing. Do not grant them site editor privileges.
+## Player access and backups
+Assign each player's email in Administration, then create and privately share a setup link. No Sites sharing or Google account is required. The Export backup button downloads the current pool as JSON. Do not edit or delete Airtable Pool Changes records.
 
 ## Validation
-Run node --experimental-strip-types scripts/check-pool.mjs for scoring/deadline checks. Add --api against the local preview to check persistence, authorization, conflict detection and locked weeks.
+Run `node --experimental-strip-types scripts/check-pool.mjs`, `node scripts/check-history.mjs`, `node --experimental-strip-types scripts/check-netlify.mjs`, and `npm run build`.
 
 ## History
 The /history page contains 2022–2023 through 2025–2026 for Bryan, Kevin, Mike, and Ed only. Champions use weekly wins and recorded earnings, with shared titles for ties. The first season is incomplete and excluded from championships. Bragging Rights picks are separate. Run node scripts/check-history.mjs to verify the import.

@@ -1,0 +1,6 @@
+'use client';
+import {useState} from 'react';
+export default function InviteButton({player,email}:{player:string;email:string}){
+ const [url,setUrl]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+ return <div><button type="button" className="button" disabled={busy||!email} onClick={async()=>{setBusy(true);setError('');setUrl('');try{const response=await fetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'invite',player,email})});const data=await response.json() as {error:string;setupUrl:string};if(!response.ok)throw new Error(data.error);setUrl(data.setupUrl)}catch(e){setError((e as Error).message)}finally{setBusy(false)}}}>{busy?'Creating…':'Create setup link'}</button>{url&&<div><label className="field">Private link · expires in 48 hours<input aria-label={'Setup link for '+player} readOnly value={url} onFocus={e=>e.target.select()}/></label><button className="button" type="button" onClick={async()=>{try{await navigator.clipboard.writeText(url)}catch{setError('Select the link and copy it manually.')}}}>Copy link</button><p className="help-text">Share this privately with {player}. It also works as a password reset.</p></div>}{error&&<p className="error" role="alert">{error}</p>}</div>
+}

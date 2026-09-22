@@ -8,6 +8,7 @@ export async function POST(request:Request){if(!sameOrigin(request))return NextR
  if(v.data.totalPoints!==w.totalPoints[p]&&w.games.some(g=>g.winner||(g.kickoff&&Date.parse(g.kickoff)<=Date.now())))return NextResponse.json({error:'The total-points prediction is locked after the first game starts.'},{status:409});
  for(const g of w.games)if(g.id in v.data.picks)g.picks[p]=v.data.picks[g.id];
  w.totalPoints[p]=v.data.totalPoints;
- if(!await saveWeek(w,v.data.revision,a.user.userId))return NextResponse.json({error:'The pool changed while you were editing. Reload the latest data and try again.'},{status:409});
- return NextResponse.json({ok:true,revision:v.data.revision+1});
+ const revision=await saveWeek(w,v.data.revision,a.user.userId,p);
+ if(revision===null)return NextResponse.json({error:'The pool changed while you were editing. Reload the latest data and try again.'},{status:409});
+ return NextResponse.json({ok:true,revision});
  }catch(e){console.error('Picks save failed',e);return NextResponse.json({error:'Could not save your picks. Your entries are still here; please retry.'},{status:503})}}
