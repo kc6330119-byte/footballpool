@@ -1,4 +1,4 @@
-import {createHash} from 'node:crypto';
+import {createHmac} from 'node:crypto';
 import type {Game, Week} from './pool';
 export type Change = {path: string[]; value?: unknown; remove?: boolean};
 type Document = Record<string, unknown>;
@@ -31,5 +31,5 @@ export function apply(doc: Document, changes: Change[]) {
   }
 }
 export function revision(week: Week) {
-  return parseInt(createHash('sha256').update(JSON.stringify(week)).digest('hex').slice(0, 12), 16);
+  return parseInt(createHmac('sha256', process.env.AUTH_SECRET || 'local-development-revision-key').update(JSON.stringify(week)).digest('hex').slice(0, 12), 16);
 }

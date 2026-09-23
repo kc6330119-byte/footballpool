@@ -4,7 +4,9 @@ import {isClosed} from './deadline';
 import seed from './seed.json';
 import {players, type Player, type Pool, type Week} from './pool';
 import {createRow, listRows, type Row} from './airtable';
-import {apply, diff, document, revision, weekFromDocument, type Change} from './changes';
+import {diff, document, revision} from './changes';
+import {applyEvent, ownChange, type PickEvent} from './pick-events';
+import {revealed,submissions,completeEntry} from './submissions';
 const text = (r: Row, key: string) => typeof r.fields[key] === 'string' ? r.fields[key] as string : '';
 const num = (r: Row, key: string) => typeof r.fields[key] === 'number' ? r.fields[key] as number : null;
 const links = (r: Row, key: string) => (r.fields[key] || []) as string[];
@@ -21,6 +23,7 @@ export async function readPool() {
   if (!season) throw new Error('Current season is missing from Airtable.');
   const playerIds = Object.fromEntries(tables.Players.filter(r => players.includes(text(r, 'Player Name') as Player)).map(r => [r.id, text(r, 'Player Name') as Player]));
   const pool = structuredClone(seed) as Pool;
+  const rejectedChanges:string[]=[];
   pool.weeks = tables.Weeks.filter(r => links(r, 'Season').includes(season.id)).map(row => {
     const n = num(row, 'Week Number')!;
     const original = seed.weeks.find(w => w.number === n);
@@ -49,25 +52,38 @@ export async function readPool() {
       w.totalPoints[p] = num(r, 'Total Points Prediction'); w.recordedTotals[p] = num(r, 'Correct Picks'); w.dues[p] = num(r, 'Dues') || 0;
       if (r.fields['Weekly Winner']) {w.winner = p; w.earnings = num(r, 'Earnings') || 0;}
     }
-    const doc = document(w);
+    let current=w;
+    current.submitted=submissions(current);
+    current.revealed=revealed(current);
     for (const change of tables['Pool Changes'].filter(r => text(r, 'Season') === seed.season && num(r, 'Week Number') === n).sort((a, b) => a.createdTime.localeCompare(b.createdTime) || a.id.localeCompare(b.id))) {
-      apply(doc, JSON.parse(text(change, 'Changes')) as Change[]);
+      const result=applyEvent(current,JSON.parse(text(change,'Changes')),Date.parse(change.createdTime));
+      current=result.week;
+      if(!result.accepted)rejectedChanges.push(change.id);
     }
-    return weekFromDocument(doc);
+    return current;
   }).sort((a, b) => a.number - b.number);
   if (pool.weeks.length !== 18) throw new Error('The season must contain 18 weeks.');
-  return {pool, revisions: Object.fromEntries(pool.weeks.map(w => [w.number, revision(w)]))};
+  return {pool, rejectedChanges, revisions: Object.fromEntries(pool.weeks.map(w => [w.number, revision(w)]))};
 }
-export const readPoolCached = unstable_cache(readPool, ['pool-airtable-v1'], {revalidate:30,tags:['pool']});
+export const readPoolCached = unstable_cache(readPool, ['pool-airtable-submissions-v1',process.env.AIRTABLE_BASE_ID||'unconfigured'], {revalidate:30,tags:['pool']});
 export async function saveWeek(week: Week, expected: number, userId: string, player?: Player) {
   const current = await readPool();
   const before = current.pool.weeks.find(w => w.number === week.number)!;
-  if (current.revisions[week.number] !== expected || (player && isClosed(before))) return null;
-  const changes = diff(document(before), document(week));
-  if (player && changes.some(c => !(c.path.length === 2 && c.path[0] === 'totalPoints' && c.path[1] === player) && !(c.path.length === 4 && c.path[0] === 'games' && c.path[2] === 'picks' && c.path[3] === player))) throw new Error('Unauthorized player change');
-  // A single immutable record commits the complete save, avoiding partial writes.
-  // Field-level patches keep concurrent saves by different players independent.
-  if (changes.length) await createRow('Pool Changes', {'Change Name': crypto.randomUUID(), Season: seed.season, 'Week Number': week.number, 'Saved By': userId, Changes: JSON.stringify(changes)});
-  revalidateTag('pool', {expire:0});
-  return revision(week);
+  if (current.revisions[week.number] !== expected || (player && (isClosed(before) || revealed(before)))) return null;
+  const next=structuredClone(week);
+  delete next.hiddenPlayers;
+  next.revealed=before.revealed;
+  next.submitted=submissions(next);
+  if (player && next.submitted[player] && !completeEntry(next,player)) throw new Error('Complete every pick and the tiebreaker before submitting.');
+  const changes = diff(document(before), document(next));
+  if (player && changes.some(c=>!ownChange(c,player))) throw new Error('Unauthorized player change');
+  if (changes.length) {
+    const event=player?{kind:'player',player,changes} satisfies PickEvent:changes;
+    const row=await createRow('Pool Changes', {'Change Name': crypto.randomUUID(), Season: seed.season, 'Week Number': week.number, 'Saved By': userId, Changes: JSON.stringify(event)});
+    revalidateTag('pool', {expire:0});
+    const after=await readPool();
+    if(after.rejectedChanges.includes(row.id))return null;
+    return after.revisions[week.number];
+  }
+  return current.revisions[week.number];
 }

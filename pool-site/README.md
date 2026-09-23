@@ -32,3 +32,6 @@ Run `node --experimental-strip-types scripts/check-pool.mjs`, `node scripts/chec
 
 ## History
 The /history page contains 2022–2023 through 2025–2026 for Bryan, Kevin, Mike, and Ed only. Champions use weekly wins and recorded earnings, with shared titles for ties. The first season is incomplete and excluded from championships. Bragging Rights picks are separate. Run node scripts/check-history.mjs to verify the import.
+
+## Private weekly picks
+From Week 3, Save draft preserves an unsubmitted entry; Submit picks requires all game picks and a tiebreaker prediction. Picks are private from every other player, including the administrator, until all four submit. The fourth submission reveals the sheet and locks player editing. Wednesday alone does not reveal it. Only the Admin editor may correct picks after reveal. See the deployment guide for migration and testing details.

@@ -2,12 +2,13 @@ import {NextResponse} from 'next/server';
 import {randomBytes} from 'node:crypto';
 import {z} from 'zod';
 import {access,members,adminEmail} from '@/lib/access';
-import {saveWeek} from '@/lib/storage';
+import {readPool,saveWeek} from '@/lib/storage';
 import {updateRow} from '@/lib/airtable';
 import {digest} from '@/lib/password';
 import {publicOrigin} from '@/lib/origin';
 import {weekSchema,sameOrigin} from '@/lib/validation';
 import {players} from '@/lib/pool';
+import {revealed,submissions} from '@/lib/submissions';
 export async function GET(){try{const a=await access();if(!a.admin)return NextResponse.json({error:'Administrator access required.'},{status:403});const rows=await members();return NextResponse.json({members:rows.map(r=>({player:r.fields['Player Name'],email:r.fields.Email||''}))},{headers:{'Cache-Control':'no-store'}})}catch{return NextResponse.json({error:'Unable to load player access.'},{status:503})}}
 export async function POST(request:Request){
  if(!sameOrigin(request))return NextResponse.json({error:'Request origin is not allowed.'},{status:403});
@@ -36,6 +37,25 @@ export async function POST(request:Request){
    return NextResponse.json({ok:true,setupUrl},{headers:{'Cache-Control':'no-store'}});
   }
   const v=weekSchema.safeParse(b.week);if(!v.success||!Number.isInteger(b.revision)||b.revision<0)return NextResponse.json({error:'Check the teams, results, amounts, and total points.'},{status:400});
+  const state=await readPool();
+  const before=state.pool.weeks.find(w=>w.number===v.data.number)!;
+  // Submission status is player-owned; admin cannot force a premature reveal.
+  v.data.submitted=submissions(before);
+  if(!revealed(before)){
+   for(const p of players){
+    if(p===a.player)continue;
+    for(const g of v.data.games)g.picks[p]=before.games.find(old=>old.id===g.id)?.picks[p]||'';
+    v.data.totalPoints[p]=before.totalPoints[p];
+    v.data.recordedTotals[p]=before.recordedTotals[p];
+   }
+   // The redacted view must not erase withheld notes or financial summaries.
+   if(!v.data.note)v.data.note=before.note;
+   if(!v.data.winner){v.data.winner=before.winner as typeof v.data.winner;v.data.earnings=before.earnings}
+   for(const team of Object.keys(before.teamEarnings))if(!v.data.teamEarnings[team])v.data.teamEarnings[team]=before.teamEarnings[team];
+   if(a.player&&(JSON.stringify(before.games.map(g=>g.picks[a.player!]))!==JSON.stringify(v.data.games.map(g=>g.picks[a.player!]))||before.totalPoints[a.player]!==v.data.totalPoints[a.player]))v.data.submitted[a.player]=false;
+   const schedule=(w:typeof before)=>w.games.map(g=>({id:g.id,matchup:g.matchup,teams:g.teams}));
+   if(JSON.stringify(schedule(before))!==JSON.stringify(schedule(v.data)))v.data.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false};
+  }
   const revision=await saveWeek(v.data,b.revision,a.user.userId);
   if(revision===null)return NextResponse.json({error:'Someone updated this week. Reload the latest data before saving.'},{status:409});
   return NextResponse.json({ok:true,revision});

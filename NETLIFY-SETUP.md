@@ -52,3 +52,15 @@ Copy server settings into ignored `pool-site/.env.local`, then run `npm ci` and 
 Run `npm run build`, `node --experimental-strip-types scripts/check-pool.mjs`, `node scripts/check-history.mjs`, and `node --experimental-strip-types scripts/check-netlify.mjs` inside `pool-site`.
 
 The old Cloudflare/Vinext scripts and migrations are retained as migration history; the active npm dev/build/start commands use Next.js and do not use Sites identity headers or D1.
+
+## Private picks and submissions
+
+From Week 3 onward, each player—including Kevin—sees only their own picks and tiebreaker prediction until all four players explicitly submit. Each submission requires a valid pick for every game and a total-points prediction. Imported entries are drafts, not automatic submissions. Weeks 1 and 2 remain visible as already-published results.
+
+Players can save a draft or submit their entry before Wednesday's deadline. Saving a draft removes that player's submitted status. When the fourth player submits, picks become visible and all player editing locks immediately. Only the Admin editor can change picks afterward. Reveal cannot be undone by a subsequent correction. The deadline alone never reveals picks; if somebody misses it, the administrator must resolve that entry with the player, for example by extending the deadline so they can submit.
+
+Before reveal, the Admin editor also hides other players' picks and preserves them when saving schedule or deadline changes. It cannot mark other players as submitted. Changing the matchups or spreads resets pending submission statuses so players can confirm the revised sheet. An administrator editing their own entry before reveal also clears their submission status. Export visible data contains only the information currently visible to that account.
+
+Visibility is enforced in the API and server-rendered page, not only in the interface. Player saves use typed events in Pool Changes; replay rejects a player save after the fourth submission, even if the request began before it. Existing legacy correction records remain readable. Use Refresh pool to see other players' latest submission status.
+
+Additional checks: `node scripts/check-submissions.mjs` and `node scripts/check-submissions-api.mjs`. The API suite starts a local production server with an in-memory Airtable substitute and never alters live records.
