@@ -35,14 +35,14 @@ const temporary=mkdtempSync(join(tmpdir(),'pool-submissions-')),shim=join(tempor
 writeFileSync(shim,`const real=globalThis.fetch;globalThis.fetch=(input,init)=>{const url=typeof input==='string'?input:input instanceof URL?input.href:input.url;if(url.startsWith('https://api.airtable.com/'))return real(url.replace('https://api.airtable.com','http://127.0.0.1:${fixture.address().port}'),init);return real(input,init)};`);
 const port=5193,base='http://127.0.0.1:'+port,secret='isolated-submission-test-secret-0123456789';
 let output='';
-const child=spawn(process.execPath,['--import',shim,'node_modules/next/dist/bin/next','start','--port',String(port)],{cwd:root,env:{...process.env,NODE_ENV:'production',AUTH_SECRET:secret,ADMIN_EMAIL:'kevin@example.test',AIRTABLE_API_KEY:'fixture-only',AIRTABLE_PERSONAL_ACCESS_TOKEN:'fixture-only',AIRTABLE_BASE_ID:'fixture',SITE_URL:base},stdio:['ignore','pipe','pipe']});
+const child=spawn(process.execPath,['--import',shim,'node_modules/next/dist/bin/next','start','--port',String(port)],{cwd:root,env:{...process.env,NODE_ENV:'production',AUTH_SECRET:secret,ADMIN_EMAIL:'kevin@example.test',AIRTABLE_API_KEY:'fixture-only',AIRTABLE_PERSONAL_ACCESS_TOKEN:'fixture-only',AIRTABLE_BASE_ID:'fixture-'+Date.now(),SITE_URL:base},stdio:['ignore','pipe','pipe']});
 child.stdout.on('data',c=>{output+=c});child.stderr.on('data',c=>{output+=c});
 function cookie(p){const data=Buffer.from(JSON.stringify({id:p,email:p.toLowerCase()+'@example.test',version:createHash('sha256').update('fixture-only').digest('hex'),exp:Date.now()+3600000})).toString('base64url');return 'cp_pool_session='+data+'.'+createHmac('sha256',secret).update(data).digest('base64url')}
 async function call(path,p,body){const r=await fetch(base+path,{method:body?'POST':'GET',headers:{Origin:base,...(p?{Cookie:cookie(p)}:{}),'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});return {status:r.status,data:await r.json()}}
 async function state(p){const r=await call('/api/pool',p);assert.equal(r.status,200,JSON.stringify(r));return r.data}
 try{
  for(let n=0;n<50&&!output.includes('Ready');n++)await new Promise(r=>setTimeout(r,200));assert.ok(output.includes('Ready'),output);
- const html=await(await fetch(base)).text();assert.ok(!html.includes('PRIVATE_FIXTURE_NOTE'));assert.ok(html.includes('Private'));
+ const html=await(await fetch(base+'/pool')).text();assert.ok(!html.includes('PRIVATE_FIXTURE_NOTE'));assert.ok(html.includes('Private'));
  assert.equal((await call('/api/pool')).status,401);
  for(const p of names){const s=await state(p),w=s.pool.weeks[2];for(const other of names.filter(x=>x!==p)){assert.equal(w.games[0].picks[other],'');assert.equal(w.totalPoints[other],null)}assert.equal(w.revealed,false);assert.equal(w.note,'')}
  let s=await state('Kevin'),w=s.pool.weeks[2];
