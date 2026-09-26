@@ -5,6 +5,7 @@ import {z} from 'zod';
 import {adminEmail,members} from './access';
 import {players,type Player} from './pool';
 import {weeklyReport} from './weekly-report';
+import {newsletterPdf} from './report-pdf';
 export function gmailUser(){return (process.env.GMAIL_USER || adminEmail()).trim().toLowerCase()}
 export function mailConfigured(){return z.string().email().safeParse(gmailUser()).success && !!process.env.GMAIL_APP_PASSWORD?.replace(/\s/g,'')}
 export async function reportRecipients(){
@@ -21,6 +22,8 @@ export function reportVersion(report:ReturnType<typeof weeklyReport>,recipients:
 }
 export async function sendReport(report:ReturnType<typeof weeklyReport>,recipients:{player:Player;email:string}[]){
  if(!mailConfigured())throw new Error('Gmail delivery is not configured.');
+ // Build before opening SMTP: an attachment failure must not send an incomplete email.
+ const attachment=await newsletterPdf(report);
  const transport=nodemailer.createTransport({
   host:'smtp.gmail.com',port:465,secure:true,
   auth:{user:gmailUser(),pass:process.env.GMAIL_APP_PASSWORD!.replace(/\s/g,'')},
@@ -33,6 +36,7 @@ export async function sendReport(report:ReturnType<typeof weeklyReport>,recipien
    from:{name:'Collins Phillips Football Pool',address:gmailUser()},
    to:'undisclosed-recipients:;',bcc:recipients.map(r=>r.email),
    replyTo:gmailUser(),subject:report.subject,html:report.html,text:report.text,
+   attachments:[{filename:attachment.filename,content:attachment.content,contentType:'application/pdf',contentDisposition:'attachment'}],
   });
   const accepted=new Set(result.accepted.map(value=>String(value).toLowerCase()));
   return {sent:recipients.filter(r=>accepted.has(r.email.toLowerCase())).map(r=>r.player),failed:recipients.filter(r=>!accepted.has(r.email.toLowerCase())).map(r=>r.player)};

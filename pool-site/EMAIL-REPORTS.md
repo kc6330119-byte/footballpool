@@ -1,6 +1,6 @@
 # Weekly email reports through Gmail
 
-In **Weekly picks**, the administrator opens **Email weekly results**, reviews the newsletter, selects players (including Kevin if desired), and presses **Submit**. After Gmail accepts all recipients, the dialog closes and the administrator stays on the same week. No recipients are selected automatically.
+In **Weekly picks**, the administrator opens **Email weekly results**, reviews the newsletter, selects players (including Kevin if desired), and presses **Submit**. After Gmail accepts all recipients, the dialog closes and the administrator stays on the same week. No recipients are selected automatically. Each email includes one printable PDF attachment of the newsletter, with the rotating photo embedded for offline viewing. The PDF uses the same saved, revealed results as the email body. No additional environment variables are needed. PDF generation happens before sending; if it fails, no email is sent.
 
 ## Gmail setup
 
@@ -26,6 +26,7 @@ The server checks a signed fingerprint of results and recipient addresses before
 ## Validation
 
 - `node scripts/check-weekly-report.mjs`
+- `node scripts/check-report-pdf.mjs`
 - `npm run build`
 - `node scripts/check-weekly-report-api.mjs` (mocked Gmail and Airtable; no real mail or data changes)
 
