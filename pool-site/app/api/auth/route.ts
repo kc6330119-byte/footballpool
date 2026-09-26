@@ -5,19 +5,21 @@ import {members, isAdmin, authVersion, SESSION_COOKIE} from '@/lib/access';
 import {digest, hashPassword, sign, verifyPassword} from '@/lib/password';
 import {updateRow} from '@/lib/airtable';
 import {sameOrigin} from '@/lib/validation';
-const input = z.object({action: z.enum(['login','setup','logout']), email: z.string().email().max(254).optional(), password: z.string().min(12).max(128).optional(), token: z.string().max(200).optional()});
+import {validNewPassword, passwordHelp} from '@/lib/password-policy';
+const input = z.object({action: z.enum(['login','setup','logout']), email: z.string().email().max(254).optional(), password: z.string().min(1).max(128).optional(), token: z.string().max(200).optional()});
 const genericError = () => NextResponse.json({error: 'Unable to sign in. Check your details or ask Kevin for a new setup link.'}, {status: 401});
 export async function POST(request: Request) {
   if (!sameOrigin(request)) return NextResponse.json({error: 'Request origin is not allowed.'}, {status: 403});
   try {
     const parsed = input.safeParse(await request.json());
-    if (!parsed.success) return NextResponse.json({error: 'Enter your email and a password of 12–128 characters.'}, {status: 400});
+    if (!parsed.success) return NextResponse.json({error: 'Enter a valid email and password (up to 128 characters).'}, {status: 400});
     const data = parsed.data;
     if (data.action === 'logout') {
       const response = NextResponse.json({ok: true});
       response.cookies.set(SESSION_COOKIE, '', {path: '/', maxAge: 0, httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production'});
       return response;
     }
+    if (data.action === 'setup' && !validNewPassword(data.password || '')) return NextResponse.json({error: passwordHelp}, {status: 400});
     // Fail before saving a password if session configuration is incomplete.
     sign({check: true});
     const email = (data.email || '').trim().toLowerCase();

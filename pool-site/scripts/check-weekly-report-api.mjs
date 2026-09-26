@@ -46,11 +46,13 @@ async function call(path,p,body){const r=await fetch(base+path,{method:body?'POS
 async function state(p){const r=await call('/api/pool',p);assert.equal(r.status,200,JSON.stringify(r));return r.data}
 try{
  for(let n=0;n<50&&!output.includes('Ready');n++)await new Promise(r=>setTimeout(r,200));assert.ok(output.includes('Ready'),output);
+ const publicNewsletter=await fetch(base+'/newsletter/1');assert.equal(publicNewsletter.status,200);const newsletterHtml=await publicNewsletter.text();assert.ok(newsletterHtml.includes('The Final Whistle'));assert.ok(newsletterHtml.includes('Latest saved results'));assert.ok(!newsletterHtml.includes('kevin@example.test'));
+ assert.ok((await fetch(base+'/newsletter/3')).status===404);assert.equal((await fetch(base+'/newsletter/99')).status,404);
  assert.equal((await call('/api/weekly-report?week=1')).status,403);
  assert.equal((await call('/api/weekly-report?week=1','Bryan')).status,403);
  assert.equal((await call('/api/weekly-report?week=3','Kevin')).status,409);
  assert.equal((await call('/api/weekly-report?week=99','Kevin')).status,400);
- const preview=await call('/api/weekly-report?week=1','Kevin');assert.equal(preview.status,200);assert.equal(preview.data.recipients.length,4);assert.equal(preview.data.configured,true);assert.ok(preview.data.report.html.includes('THE FINAL WHISTLE'));
+ const preview=await call('/api/weekly-report?week=1','Kevin');assert.equal(preview.status,200);assert.equal(preview.data.recipients.length,4);assert.equal(preview.data.configured,true);assert.ok(preview.data.report.html.includes('THE FINAL WHISTLE'));assert.ok(preview.data.report.html.includes(base+'/newsletter/1'));assert.ok(preview.data.report.text.includes(base+'/newsletter/1'));
  const body={week:1,recipients:['Ed','Kevin'],version:preview.data.version};
  assert.equal((await call('/api/weekly-report','Bryan',body)).status,403);
  const hostile=await fetch(base+'/api/weekly-report',{method:'POST',headers:{Origin:'https://hostile.example',Cookie:cookie('Kevin'),'Content-Type':'application/json'},body:JSON.stringify(body)});assert.equal(hostile.status,403);
@@ -69,6 +71,6 @@ try{
   const {chromium}=await import(process.env.REPORT_BROWSER_MODULE);const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000}});
   await page.context().addCookies([{name:'cp_pool_session',value:cookie('Kevin').split('=')[1],url:base}]);await page.goto(base+'/pool?week=1');await page.getByRole('button',{name:'Email weekly results'}).click();await page.getByRole('dialog').getByText('Kevin · Administrator',{exact:true}).waitFor();await page.screenshot({path:'/tmp/weekly-newsletter-admin.png'});const frame=page.frameLocator('iframe');await frame.getByRole('heading',{name:'THE FINAL WHISTLE'}).waitFor();
   failMail=false;await page.getByRole('checkbox',{name:/Kevin/}).check();await page.getByRole('button',{name:'Submit',exact:true}).click();await page.getByRole('dialog').waitFor({state:'hidden'});assert.ok(await page.getByRole('heading',{name:'Week 1 pick sheet'}).isVisible());
-  await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Email weekly results'}).click();await page.getByRole('dialog').getByText('Kevin · Administrator',{exact:true}).waitFor();await page.screenshot({path:'/tmp/weekly-newsletter-mobile.png'});console.log('PASS: administrator checklist, newsletter preview, submit closes back to selected week, mobile view.');await browser.close();
+  await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Email weekly results'}).click();await page.getByRole('dialog').getByText('Kevin · Administrator',{exact:true}).waitFor();await page.screenshot({path:'/tmp/weekly-newsletter-mobile.png'});console.log('PASS: administrator checklist, newsletter preview, submit closes back to selected week, mobile view.');await page.goto(base+'/newsletter/1');await page.getByRole('heading',{name:'The Final Whistle',exact:true}).waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));await page.screenshot({path:'/tmp/newsletter-web-mobile.png',fullPage:true});console.log('PASS: newsletter mobile layout has no horizontal overflow.');await browser.close();
  }
 } catch(e){console.error(output);throw e} finally {child.kill();fixture.closeAllConnections();await new Promise(r=>fixture.close(r));rmSync(temporary,{recursive:true,force:true})}

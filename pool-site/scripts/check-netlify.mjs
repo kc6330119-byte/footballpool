@@ -45,3 +45,10 @@ assert.equal(sameOrigin(req('https://evil.example', {'x-forwarded-host':'evil.ex
 process.env.NODE_ENV = 'development';
 assert.equal(sameOrigin(req('http://localhost:3000')), true);
 console.log('PASS: proxied production origins, hostile/missing origins, forwarded-header spoofing, and local development.');
+
+const {validNewPassword}=await import('../lib/password-policy.ts');
+for(const value of ['abcde','12345','!!!!!','Ab1!?'])assert.equal(validNewPassword(value),true);
+for(const value of ['', 'abcd','abc d',' abcde','abcde ','abc\tde','abc\nde','abc\u00a0de'])assert.equal(validNewPassword(value),false);
+assert.equal(validNewPassword('a'.repeat(129)),false);
+const shortHash=await hashPassword('12345');assert.equal(await verifyPassword('12345',shortHash),true);
+console.log('PASS: five-character passwords, no complexity requirement, whitespace rejection, and short-password authentication.');

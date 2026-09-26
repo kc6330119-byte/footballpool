@@ -17,6 +17,10 @@ The app uses encrypted SMTP to `smtp.gmail.com:465`. The sender and reply addres
 
 Until configured, the newsletter can be previewed, but Submit is disabled. Photos must be published before a real email is sent from a local preview. No automatic test email is sent.
 
+## Browser newsletter
+
+Every email includes a “View newsletter in your browser” link to `/newsletter/N`. This is a continuous mobile-friendly page with readable scorecards and no attachment required. It requires no sign-in because it exposes only revealed weeks already visible publicly in the pool. Private, empty, and invalid weeks return 404. The page shows the latest saved results, while the email and PDF remain snapshots from sending. No player email addresses are included.
+
 ## Behavior
 
 Reports require games and revealed picks. Unfinished results are labeled as updates. The recorded weekly winner is authoritative when present; otherwise the calculated winner is shown only if scoring and the tiebreaker resolve it. Standings include revealed weeks through the selected week. Photos rotate by week.
