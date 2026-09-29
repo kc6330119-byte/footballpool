@@ -35,3 +35,7 @@ The server checks a signed fingerprint of results and recipient addresses before
 - `node scripts/check-weekly-report-api.mjs` (mocked Gmail and Airtable; no real mail or data changes)
 
 Google app password instructions: https://support.google.com/accounts/answer/185833
+
+## Current roster
+
+From Week 4 of 2026–2027, Bryan and Kevin are the participating players. Both must submit every pick and total points before picks reveal and lock. The administrator can still correct revealed picks. Weeks 1–3 and historical standings retain all four players. Only Bryan and Kevin appear in newsletter distribution. Mike and Ed's Airtable `Active` flags are disabled; authentication checks this flag on every request, including existing sessions. Public results remain available to anonymous visitors.

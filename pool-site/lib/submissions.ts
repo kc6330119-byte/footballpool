@@ -1,11 +1,13 @@
-import {players, type Player, type Pool, type Week} from './pool';
+import {participants, players, type Player, type Pool, type Week} from './pool';
 export function submissions(w: Week): Record<Player, boolean> {
   return Object.fromEntries(players.map(p => [p, w.submitted?.[p] === true])) as Record<Player, boolean>;
 }
-export function allSubmitted(w: Week) {return players.every(p => submissions(w)[p])}
-export function revealed(w: Week) {
+// Replay older saves under their original roster so past drafts are not retroactively rejected.
+export const rosterChangedAt=Date.parse('2026-09-29T19:57:44Z');
+export function allSubmitted(w: Week, at=Infinity) {return (at<rosterChangedAt?players:participants(w)).every(p => submissions(w)[p])}
+export function revealed(w: Week, at=Infinity) {
   // Weeks 1–2 were already public before this feature was introduced.
-  return w.number <= 2 || w.revealed === true || allSubmitted(w);
+  return w.number <= 2 || w.revealed === true || allSubmitted(w,at);
 }
 export function completeEntry(w: Week, p: Player) {
   return w.games.length > 0 && w.games.every(g => g.teams.includes(g.picks[p])) && w.totalPoints[p] !== null && Number.isFinite(w.totalPoints[p]);

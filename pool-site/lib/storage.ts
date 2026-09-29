@@ -60,6 +60,7 @@ export async function readPool() {
       current=result.week;
       if(!result.accepted)rejectedChanges.push(change.id);
     }
+    current.revealed=revealed(current);
     return current;
   }).sort((a, b) => a.number - b.number);
   if (pool.weeks.length !== 18) throw new Error('The season must contain 18 weeks.');

@@ -13,7 +13,7 @@ async function prepare(number:number){
  const {pool}=await readPool();
  const week=pool.weeks.find(w=>w.number===number);
  if(!week?.games.length)return {error:'This week has no matchups yet.'};
- if(!revealed(week))return {error:'Picks are still private. Email reports open after all four players submit.'};
+ if(!revealed(week))return {error:'Picks are still private. Email reports open after all participating players submit.'};
  const report=weeklyReport(pool,number,publicOrigin());
  const recipients=await reportRecipients();
  return {report,recipients,version:reportVersion(report,recipients)};
@@ -39,6 +39,7 @@ export async function POST(request:Request){
   if('error' in prepared)return json(prepared,409);
   if(prepared.version!==parsed.data.version)return json({error:'The saved results or player addresses changed. Reload the preview before sending.'},409);
   const selected=prepared.recipients.filter(r=>parsed.data.recipients.includes(r.player));
+  if(selected.length!==parsed.data.recipients.length)return json({error:'Choose only current players.'},400);
   if(selected.some(r=>!r.available))return json({error:'A selected player needs an active account and a valid email address.'},400);
   const result=await sendReport(prepared.report,selected);
   if(result.failed.length)return json({error:`Gmail accepted the report for ${result.sent.join(', ')||'no players'}. It rejected ${result.failed.join(', ')}. Only rejected players remain selected.`,sent:result.sent,failed:result.failed},502);

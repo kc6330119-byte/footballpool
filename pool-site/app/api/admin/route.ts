@@ -7,7 +7,7 @@ import {updateRow} from '@/lib/airtable';
 import {digest} from '@/lib/password';
 import {publicOrigin} from '@/lib/origin';
 import {weekSchema,sameOrigin} from '@/lib/validation';
-import {players} from '@/lib/pool';
+import {players,activePlayers} from '@/lib/pool';
 import {revealed,submissions} from '@/lib/submissions';
 export async function GET(){try{const a=await access();if(!a.admin)return NextResponse.json({error:'Administrator access required.'},{status:403});const rows=await members();return NextResponse.json({members:rows.map(r=>({player:r.fields['Player Name'],email:r.fields.Email||''}))},{headers:{'Cache-Control':'no-store'}})}catch{return NextResponse.json({error:'Unable to load player access.'},{status:503})}}
 export async function POST(request:Request){
@@ -18,6 +18,7 @@ export async function POST(request:Request){
   if(b.action==='member'||b.action==='invite'){
    const v=z.object({player:z.enum(players),email:z.string().email().max(254)}).safeParse(b);
    if(!v.success)return NextResponse.json({error:'Enter a valid player and email.'},{status:400});
+   if(!activePlayers.includes(v.data.player as typeof activePlayers[number]))return NextResponse.json({error:'This player has withdrawn from the pool.'},{status:400});
    const email=v.data.email.trim().toLowerCase();
    if(v.data.player==='Kevin'&&email!==adminEmail())return NextResponse.json({error:'Your administrator email is fixed in the site settings.'},{status:400});
    const rows=await members();

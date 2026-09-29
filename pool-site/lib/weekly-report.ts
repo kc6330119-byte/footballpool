@@ -1,12 +1,13 @@
-import {correct, players, standings, weeklyLeaders, type Pool} from './pool';
+import {correct, participants, standings, weeklyLeaders, type Pool} from './pool';
 import {revealed, visiblePool} from './submissions';
 
 const escape = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const dollars = (n: number) => new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',maximumFractionDigits:2}).format(n);
 export function weeklyReport(pool: Pool, number: number, origin: string) {
+ const players=participants({number});
  const source = pool.weeks.find(w => w.number === number);
  if (!source?.games.length) throw new Error('This week has no matchups yet.');
- if (!revealed(source)) throw new Error('Reports are available only after all four players have submitted and picks are revealed.');
+ if (!revealed(source)) throw new Error('Reports are available only after all participating players have submitted and picks are revealed.');
  // Use only public, revealed weeks for every statistic in the newsletter.
  const view = visiblePool(pool, null), week = view.weeks.find(w => w.number === number)!;
  const season = {...view, weeks:view.weeks.filter(w => w.number <= number)};
@@ -26,7 +27,7 @@ export function weeklyReport(pool: Pool, number: number, origin: string) {
  const link = `${new URL(origin).origin}/pool?tab=picks&week=${number}`;
  const browserLink = `${new URL(origin).origin}/newsletter/${number}`;
  const intro = winner ? `${winner} has the week's bragging rights${week.winner ? ` and ${dollars(week.earnings)} in recorded earnings` : '; the payout is awaiting the administrator'}. ${complete?'Every spread result is in.':`${results} of ${week.games.length} spread results are entered; the recorded winner is shown while the remaining results are pending.`}` : `${results} of ${week.games.length} spread results are entered. ${complete?'The tiebreaker still has a say.':'There is still football left on the board.'}`;
- const notes = [solo.length ? `${solo.length} lone-wolf call${solo.length===1?'':'s'}: ${solo.map(g=>`${players.find(p=>g.picks[p]===g.winner)} on ${g.winner}`).join('; ')}.` : 'No lone-wolf winners among the entered results.',`${sweeps} clean sweep${sweeps===1?'':'s'} for all four players. ${pushes} push${pushes===1?'':'es'} (zero points).`, 'Pick ’em. Talk trash. Come back next week.'];
+ const notes = [solo.length ? `${solo.length} lone-wolf call${solo.length===1?'':'s'}: ${solo.map(g=>`${players.find(p=>g.picks[p]===g.winner)} on ${g.winner}`).join('; ')}.` : 'No lone-wolf winners among the entered results.',`${sweeps} clean sweep${sweeps===1?'':'s'} for all participating players. ${pushes} push${pushes===1?'':'es'} (zero points).`, 'Pick ’em. Talk trash. Come back next week.'];
  const subject = `Collins Phillips • Week ${number} ${complete?'results':'results update'} • ${winner?`${winner} wins`:'The race continues'}`;
  const td = 'padding:12px 9px;border-bottom:1px solid #ddd9cf;text-align:left;font:13px/1.5 Arial,sans-serif;color:#24392e;';
  const table = (headers:string[],rows:string[][]) => `<table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;table-layout:fixed"><thead><tr>${headers.map(h=>`<th scope="col" style="${td}background:#183d2d;color:#fff;font-size:10px;text-transform:uppercase;word-wrap:break-word">${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td style="${td}word-wrap:break-word">${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;

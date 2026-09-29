@@ -52,20 +52,22 @@ try{
  assert.equal((await call('/api/weekly-report?week=1','Bryan')).status,403);
  assert.equal((await call('/api/weekly-report?week=3','Kevin')).status,409);
  assert.equal((await call('/api/weekly-report?week=99','Kevin')).status,400);
- const preview=await call('/api/weekly-report?week=1','Kevin');assert.equal(preview.status,200);assert.equal(preview.data.recipients.length,4);assert.equal(preview.data.configured,true);assert.ok(preview.data.report.html.includes('THE FINAL WHISTLE'));assert.ok(preview.data.report.html.includes(base+'/newsletter/1'));assert.ok(preview.data.report.text.includes(base+'/newsletter/1'));
- const body={week:1,recipients:['Ed','Kevin'],version:preview.data.version};
+ const preview=await call('/api/weekly-report?week=1','Kevin');assert.equal(preview.status,200);assert.equal(preview.data.recipients.length,2);assert.equal(preview.data.configured,true);assert.ok(preview.data.report.html.includes('THE FINAL WHISTLE'));assert.ok(preview.data.report.html.includes(base+'/newsletter/1'));assert.ok(preview.data.report.text.includes(base+'/newsletter/1'));
+ rows.Players.find(r=>r.id==='Ed').fields.Active=false;rows.Players.find(r=>r.id==='Mike').fields.Active=false;
+ for(const former of ['Ed','Mike']){const revoked=await call('/api/pool',former);assert.equal(revoked.status,401);assert.equal((await call('/api/picks',former,{week:4})).status,403);}
+ const body={week:1,recipients:['Bryan','Kevin'],version:preview.data.version};
  assert.equal((await call('/api/weekly-report','Bryan',body)).status,403);
  const hostile=await fetch(base+'/api/weekly-report',{method:'POST',headers:{Origin:'https://hostile.example',Cookie:cookie('Kevin'),'Content-Type':'application/json'},body:JSON.stringify(body)});assert.equal(hostile.status,403);
  assert.equal((await call('/api/weekly-report','Kevin',{...body,recipients:[]})).status,400);
  assert.equal((await call('/api/weekly-report','Kevin',{...body,recipients:['Outsider']})).status,400);
  assert.equal((await call('/api/weekly-report','Kevin',{...body,html:'injected'})).status,400);
- rows.Players.find(r=>r.id==='Ed').fields.Email='changed@example.test';
+ rows.Players.find(r=>r.id==='Bryan').fields.Email='changed@example.test';
  assert.equal((await call('/api/weekly-report','Kevin',body)).status,409);
- rows.Players.find(r=>r.id==='Ed').fields.Email='ed@example.test';
- const sent=await call('/api/weekly-report','Kevin',body);assert.equal(sent.status,200,JSON.stringify(sent));assert.deepEqual(sent.data.recipients,['Ed','Kevin']);
- assert.equal(deliveries.length,1);assert.deepEqual(deliveries[0].bcc,['ed@example.test','kevin@example.test']);assert.equal(deliveries[0].to,'undisclosed-recipients:;');assert.equal(deliveries[0].from.address,'kevin@example.test');assert.ok(deliveries[0].html&&deliveries[0].text);assert.equal(deliveries[0].attachments.length,1);assert.equal(deliveries[0].attachments[0].contentType,'application/pdf');assert.equal(deliveries[0].attachments[0].filename,'collins-phillips-week-1-newsletter.pdf');assert.ok(Buffer.from(deliveries[0].attachments[0].content.data).subarray(0,5).equals(Buffer.from('%PDF-')));
- rejectEmail='ed@example.test';const partial=await call('/api/weekly-report','Kevin',body);assert.equal(partial.status,502);assert.deepEqual(partial.data.sent,['Kevin']);assert.deepEqual(partial.data.failed,['Ed']);rejectEmail='';
- failMail=true;assert.equal((await call('/api/weekly-report','Kevin',{...body,recipients:['Mike']})).status,503);
+ rows.Players.find(r=>r.id==='Bryan').fields.Email='bryan@example.test';
+ const sent=await call('/api/weekly-report','Kevin',body);assert.equal(sent.status,200,JSON.stringify(sent));assert.deepEqual(sent.data.recipients,['Bryan','Kevin']);
+ assert.equal(deliveries.length,1);assert.deepEqual(deliveries[0].bcc,['bryan@example.test','kevin@example.test']);assert.equal(deliveries[0].to,'undisclosed-recipients:;');assert.equal(deliveries[0].from.address,'kevin@example.test');assert.ok(deliveries[0].html&&deliveries[0].text);assert.equal(deliveries[0].attachments.length,1);assert.equal(deliveries[0].attachments[0].contentType,'application/pdf');assert.equal(deliveries[0].attachments[0].filename,'collins-phillips-week-1-newsletter.pdf');assert.ok(Buffer.from(deliveries[0].attachments[0].content.data).subarray(0,5).equals(Buffer.from('%PDF-')));
+ rejectEmail='bryan@example.test';const partial=await call('/api/weekly-report','Kevin',body);assert.equal(partial.status,502);assert.deepEqual(partial.data.sent,['Kevin']);assert.deepEqual(partial.data.failed,['Bryan']);rejectEmail='';
+ failMail=true;assert.equal((await call('/api/weekly-report','Kevin',{...body,recipients:['Bryan']})).status,503);
  console.log('PASS: admin-only preview/send, origin protection, private-week blocking, selected recipients including admin, stale-preview detection, Gmail sender, rejected recipients, and delivery failures. No real email sent.');
  if(process.env.REPORT_BROWSER_MODULE){
   const {chromium}=await import(process.env.REPORT_BROWSER_MODULE);const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000}});

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import seed from '../lib/seed.json';
-import {players,type Pool,type Week} from '../lib/pool';
-import {visiblePool,revealed,submissions,completeEntry} from '../lib/submissions';
+import {weeklyLeaders,players,type Pool,type Week} from '../lib/pool';
+import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt} from '../lib/submissions';
 import {applyEvent} from '../lib/pick-events';
 import {diff,document} from '../lib/changes';
 import {deadlineUTC} from '../lib/deadline';
@@ -52,3 +52,18 @@ assert.equal(draft.week.submitted!.Bryan,false);
 assert.throws(()=>applyEvent(base,{kind:'player',player:'Bryan',changes:[{path:['totalPoints','Mike'],value:20}]},time));
 assert.equal(revealed(applyEvent(w,[{path:['submitted','Kevin'],value:false}],time).week),true,'Reveal is irreversible');
 console.log('PASS: server redaction including admin, historical visibility, four required complete submissions, draft withdrawal, deadline privacy, post-submit lock, in-flight saves, admin corrections, and irreversible reveal.');
+
+const two=structuredClone(base);two.number=4;two.deadlineLocal='2099-10-01T23:59';two.totalPoints.Bryan=40;two.totalPoints.Kevin=45;
+two.submitted={Bryan:true,Kevin:false,Ed:false,Mike:false};
+assert.equal(revealed(two),false);
+const final=applyEvent(two,{kind:'player',player:'Kevin',changes:[{path:['submitted','Kevin'],value:true}]},rosterChangedAt+1000);
+assert.equal(final.accepted,true);assert.equal(revealed(final.week),true);
+assert.equal(applyEvent(final.week,{kind:'player',player:'Bryan',changes:[{path:['totalPoints','Bryan'],value:99}]},rosterChangedAt+2000).accepted,false);
+assert.equal(applyEvent(final.week,[{path:['totalPoints','Bryan'],value:99}],rosterChangedAt+2000).week.totalPoints.Bryan,99);
+const originalEra=applyEvent(two,{kind:'player',player:'Kevin',changes:[{path:['submitted','Kevin'],value:true}]},rosterChangedAt-1000);
+assert.equal(originalEra.week.revealed,false,'Past two-player submissions did not lock under the original roster');
+assert.equal(revealed(originalEra.week),true,'Current roster reveals both submitted players');
+const historical=structuredClone(originalEra.week);historical.number=3;assert.equal(revealed(historical),false);
+two.games[0].winner=two.games[0].teams[0];two.games[0].picks.Bryan=two.games[0].teams[1];two.games[0].picks.Kevin=two.games[0].teams[0];
+assert.deepEqual(weeklyLeaders(two),['Kevin'],'Withdrawn players cannot win new weeks');
+console.log('PASS: two-player reveal, post-submit lock, admin correction, historical roster/replay preservation, and eligible weekly winners.');
