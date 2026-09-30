@@ -3,11 +3,11 @@ import seed from '../lib/seed.json';
 import {weeklyReport} from '../lib/weekly-report';
 import {players,type Pool} from '../lib/pool';
 const pool=structuredClone(seed) as Pool, w=pool.weeks[2];
-w.revealed=false;w.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false};
+w.revealed=false;w.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false,Randy:false};
 assert.throws(()=>weeklyReport(pool,3,'https://pool.example'),/submitted/);
 w.revealed=true;w.games=w.games.slice(0,2);w.winner='';w.note='<script>alert("bad")</script>';
 for(const game of w.games){game.teams=['A','B'];game.matchup='A & B';game.winner='A';game.score='20–17';for(const p of players)game.picks[p]='A'}
-w.totalPoints={Bryan:40,Ed:50,Mike:60,Kevin:70};w.actualTotal=39;
+w.totalPoints={Bryan:40,Ed:50,Mike:60,Kevin:70,Randy:null};w.actualTotal=39;
 const report=weeklyReport(pool,3,'https://pool.example');
 assert.ok(report.subject.includes('Bryan wins'));assert.ok(report.html.includes('CALCULATED WEEKLY WINNER'));
 assert.ok(report.html.includes('&lt;script&gt;'));assert.ok(!report.html.includes('<script>'));

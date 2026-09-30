@@ -6,7 +6,7 @@ import {readFileSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash,createHmac} from 'node:crypto';
-const root=new URL('../',import.meta.url).pathname,seed=JSON.parse(readFileSync(join(root,'lib/seed.json'))),names=['Bryan','Ed','Mike','Kevin'];
+const root=new URL('../',import.meta.url).pathname,seed=JSON.parse(readFileSync(join(root,'lib/seed.json'))),names=['Bryan','Ed','Mike','Kevin','Randy'];
 const rows={Players:names.map(p=>({id:p,fields:{'Player Name':p,Email:p.toLowerCase()+'@example.test',Active:true,'Password Hash':'fixture-only'}})),Seasons:[{id:'season',fields:{'Season Name':seed.season}}],Weeks:[],Games:[],'Weekly Results':[],'Pool Changes':[]};
 for(const w of seed.weeks){
  const id='week'+w.number;
@@ -52,9 +52,10 @@ try{
  assert.equal((await call('/api/weekly-report?week=1','Bryan')).status,403);
  assert.equal((await call('/api/weekly-report?week=3','Kevin')).status,409);
  assert.equal((await call('/api/weekly-report?week=99','Kevin')).status,400);
- const preview=await call('/api/weekly-report?week=1','Kevin');assert.equal(preview.status,200);assert.equal(preview.data.recipients.length,2);assert.equal(preview.data.configured,true);assert.ok(preview.data.report.html.includes('THE FINAL WHISTLE'));assert.ok(preview.data.report.html.includes(base+'/newsletter/1'));assert.ok(preview.data.report.text.includes(base+'/newsletter/1'));
+ const preview=await call('/api/weekly-report?week=1','Kevin');assert.equal(preview.status,200);assert.equal(preview.data.recipients.length,3);assert.equal(preview.data.configured,true);assert.ok(preview.data.report.html.includes('THE FINAL WHISTLE'));assert.ok(preview.data.report.html.includes(base+'/newsletter/1'));assert.ok(preview.data.report.text.includes(base+'/newsletter/1'));
  rows.Players.find(r=>r.id==='Ed').fields.Active=false;rows.Players.find(r=>r.id==='Mike').fields.Active=false;
  for(const former of ['Ed','Mike']){const revoked=await call('/api/pool',former);assert.equal(revoked.status,401);assert.equal((await call('/api/picks',former,{week:4})).status,403);}
+ const newcomer=await call('/api/pool','Randy');assert.equal(newcomer.status,200);assert.equal(newcomer.data.access.player,'Randy');assert.equal(newcomer.data.access.admin,false);assert.equal((await call('/api/admin','Randy')).status,403);
  const body={week:1,recipients:['Bryan','Kevin'],version:preview.data.version};
  assert.equal((await call('/api/weekly-report','Bryan',body)).status,403);
  const hostile=await fetch(base+'/api/weekly-report',{method:'POST',headers:{Origin:'https://hostile.example',Cookie:cookie('Kevin'),'Content-Type':'application/json'},body:JSON.stringify(body)});assert.equal(hostile.status,403);

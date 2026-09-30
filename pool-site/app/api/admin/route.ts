@@ -55,7 +55,7 @@ export async function POST(request:Request){
    for(const team of Object.keys(before.teamEarnings))if(!v.data.teamEarnings[team])v.data.teamEarnings[team]=before.teamEarnings[team];
    if(a.player&&(JSON.stringify(before.games.map(g=>g.picks[a.player!]))!==JSON.stringify(v.data.games.map(g=>g.picks[a.player!]))||before.totalPoints[a.player]!==v.data.totalPoints[a.player]))v.data.submitted[a.player]=false;
    const schedule=(w:typeof before)=>w.games.map(g=>({id:g.id,matchup:g.matchup,teams:g.teams}));
-   if(JSON.stringify(schedule(before))!==JSON.stringify(schedule(v.data)))v.data.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false};
+   if(JSON.stringify(schedule(before))!==JSON.stringify(schedule(v.data)))v.data.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false,Randy:false};
   }
   const revision=await saveWeek(v.data,b.revision,a.user.userId);
   if(revision===null)return NextResponse.json({error:'Someone updated this week. Reload the latest data before saving.'},{status:409});

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import seed from '../lib/seed.json';
-import {weeklyLeaders,players,type Pool,type Week} from '../lib/pool';
-import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt} from '../lib/submissions';
+import {weeklyLeaders,historicalPlayers as players,type Pool,type Week} from '../lib/pool';
+import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt,randyJoinedAt} from '../lib/submissions';
 import {applyEvent} from '../lib/pick-events';
 import {diff,document} from '../lib/changes';
 import {deadlineUTC} from '../lib/deadline';
@@ -20,7 +20,7 @@ for(const viewer of [null,...players]){
  }
  assert.equal(view.note,'');assert.equal(view.winner,'');
 }
-assert.equal(visiblePool(pool,'Kevin').weeks[0].hiddenPlayers!.length,3,'Admin has no privacy bypass');
+assert.equal(visiblePool(pool,'Kevin').weeks[0].hiddenPlayers!.length,4,'Admin has no privacy bypass');
 const past=visiblePool({...seed,weeks:[seed.weeks[0],seed.weeks[1]]} as Pool,null);
 assert.equal(past.weeks[0].games[0].picks.Mike,seed.weeks[0].games[0].picks.Mike);
 let w=structuredClone(base);
@@ -45,7 +45,7 @@ assert.equal(completeEntry(incomplete,'Bryan'),false);
 assert.equal(applyEvent(incomplete,{kind:'player',player:'Bryan',changes:[{path:['submitted','Bryan'],value:true}]},time).accepted,false);
 incomplete.totalPoints.Bryan=20;incomplete.games[0].picks.Bryan='';
 assert.equal(completeEntry(incomplete,'Bryan'),false);
-const three=structuredClone(base);three.submitted={Bryan:true,Ed:true,Mike:true,Kevin:false};
+const three=structuredClone(base);three.submitted={Bryan:true,Ed:true,Mike:true,Kevin:false,Randy:false};
 const draft=applyEvent(three,{kind:'player',player:'Bryan',changes:[{path:['submitted','Bryan'],value:false}]},time);
 assert.equal(draft.accepted,true);assert.equal(revealed(draft.week),false);
 assert.equal(draft.week.submitted!.Bryan,false);
@@ -54,7 +54,7 @@ assert.equal(revealed(applyEvent(w,[{path:['submitted','Kevin'],value:false}],ti
 console.log('PASS: server redaction including admin, historical visibility, four required complete submissions, draft withdrawal, deadline privacy, post-submit lock, in-flight saves, admin corrections, and irreversible reveal.');
 
 const two=structuredClone(base);two.number=4;two.deadlineLocal='2099-10-01T23:59';two.totalPoints.Bryan=40;two.totalPoints.Kevin=45;
-two.submitted={Bryan:true,Kevin:false,Ed:false,Mike:false};
+two.submitted={Bryan:true,Kevin:false,Ed:false,Mike:false,Randy:false};
 assert.equal(revealed(two),false);
 const final=applyEvent(two,{kind:'player',player:'Kevin',changes:[{path:['submitted','Kevin'],value:true}]},rosterChangedAt+1000);
 assert.equal(final.accepted,true);assert.equal(revealed(final.week),true);
@@ -62,8 +62,20 @@ assert.equal(applyEvent(final.week,{kind:'player',player:'Bryan',changes:[{path:
 assert.equal(applyEvent(final.week,[{path:['totalPoints','Bryan'],value:99}],rosterChangedAt+2000).week.totalPoints.Bryan,99);
 const originalEra=applyEvent(two,{kind:'player',player:'Kevin',changes:[{path:['submitted','Kevin'],value:true}]},rosterChangedAt-1000);
 assert.equal(originalEra.week.revealed,false,'Past two-player submissions did not lock under the original roster');
-assert.equal(revealed(originalEra.week),true,'Current roster reveals both submitted players');
+assert.equal(revealed(originalEra.week,randyJoinedAt-1),true,'Current roster reveals both submitted players');
 const historical=structuredClone(originalEra.week);historical.number=3;assert.equal(revealed(historical),false);
 two.games[0].winner=two.games[0].teams[0];two.games[0].picks.Bryan=two.games[0].teams[1];two.games[0].picks.Kevin=two.games[0].teams[0];
 assert.deepEqual(weeklyLeaders(two),['Kevin'],'Withdrawn players cannot win new weeks');
 console.log('PASS: two-player reveal, post-submit lock, admin correction, historical roster/replay preservation, and eligible weekly winners.');
+const rejoined=applyEvent(final.week,{kind:'roster-reopen',week:4,player:'Randy'},randyJoinedAt+1).week;
+assert.equal(revealed(rejoined),false);assert.equal(rejoined.submitted!.Bryan,true);assert.equal(rejoined.submitted!.Kevin,true);assert.equal(rejoined.submitted!.Randy,false);
+assert.deepEqual(rejoined.games,final.week.games);assert.deepEqual(rejoined.totalPoints,final.week.totalPoints);
+const hidden=visiblePool({...pool,weeks:[rejoined]},'Randy').weeks[0];
+assert.equal(hidden.games[0].picks.Bryan,'');assert.equal(hidden.games[0].picks.Kevin,'');assert.equal(hidden.totalPoints.Bryan,null);
+assert.equal(visiblePool({...pool,weeks:[rejoined]},'Kevin').weeks[0].games[0].picks.Bryan,'');
+assert.equal(applyEvent(rejoined,{kind:'player',player:'Randy',changes:[{path:['submitted','Randy'],value:true}]},randyJoinedAt+2).accepted,false);
+const randyReady=structuredClone(rejoined);for(const g of randyReady.games)g.picks.Randy=g.teams[0];randyReady.totalPoints.Randy=42;randyReady.submitted!.Randy=true;
+const third=applyEvent(rejoined,{kind:'player',player:'Randy',changes:diff(document(rejoined),document(randyReady))},randyJoinedAt+3);
+assert.equal(third.accepted,true);assert.equal(revealed(third.week),true);
+assert.equal(applyEvent(third.week,{kind:'player',player:'Randy',changes:[{path:['totalPoints','Randy'],value:43}]},randyJoinedAt+4).accepted,false);
+console.log('PASS: explicit Week 4 privacy reopening preserves existing entries, hides others from Randy/admin, requires Randy’s complete entry, then reveals and locks all three.');

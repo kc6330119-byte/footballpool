@@ -1,13 +1,19 @@
 import type {Player, Week} from './pool';
 import {players} from './pool';
 import {apply, document, weekFromDocument, type Change} from './changes';
-import {allSubmitted, completeEntry, revealed, submissions} from './submissions';
+import {allSubmitted, completeEntry, revealed, submissions, randyJoinedAt} from './submissions';
 import {isClosed} from './deadline';
+export type RosterReopenEvent={kind:'roster-reopen';week:4;player:'Randy'};
 export type PickEvent = {kind:'player';player:Player;changes:Change[]};
 export function ownChange(c: Change, player: Player) {
   return (c.path.length === 2 && ['totalPoints','submitted'].includes(c.path[0]) && c.path[1] === player) || (c.path.length === 4 && c.path[0] === 'games' && c.path[2] === 'picks' && c.path[3] === player);
 }
-export function applyEvent(week: Week, event: Change[] | PickEvent, at: number): {week:Week;accepted:boolean} {
+export function applyEvent(week: Week, event: Change[] | PickEvent | RosterReopenEvent, at: number): {week:Week;accepted:boolean} {
+  // Explicit administrator migration only; ordinary saves cannot reopen revealed picks.
+  if(!Array.isArray(event)&&event.kind==='roster-reopen'){
+    if(week.number!==4||event.week!==4||event.player!=='Randy'||at<randyJoinedAt)throw new Error('Invalid roster migration');
+    const next=structuredClone(week);next.revealed=false;next.submitted={...submissions(week),Randy:false};return {week:next,accepted:true};
+  }
   const wasRevealed = revealed(week,at);
   if (!Array.isArray(event)) {
     if (event.kind !== 'player' || !players.includes(event.player) || event.changes.some(c => !ownChange(c,event.player) || c.remove)) throw new Error('Invalid player save');

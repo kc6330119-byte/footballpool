@@ -23,12 +23,14 @@ export async function readPool() {
   if (!season) throw new Error('Current season is missing from Airtable.');
   const playerIds = Object.fromEntries(tables.Players.filter(r => players.includes(text(r, 'Player Name') as Player)).map(r => [r.id, text(r, 'Player Name') as Player]));
   const pool = structuredClone(seed) as Pool;
+  pool.players=players;
   const rejectedChanges:string[]=[];
   pool.weeks = tables.Weeks.filter(r => links(r, 'Season').includes(season.id)).map(row => {
     const n = num(row, 'Week Number')!;
     const original = seed.weeks.find(w => w.number === n);
     if (!original) throw new Error('Invalid week number in Airtable.');
     const w = structuredClone(original) as Week;
+    w.totalPoints.Randy ??= null;w.recordedTotals.Randy ??= null;w.dues.Randy ??= 0;
     w.locked = row.fields.Locked === true;
     w.deadlineLocal = localDate(text(row, 'Picks Deadline'));
     w.actualTotal = num(row, 'Actual Total Points'); w.note = text(row, 'Notes');
@@ -60,13 +62,15 @@ export async function readPool() {
       current=result.week;
       if(!result.accepted)rejectedChanges.push(change.id);
     }
+    for(const g of current.games)g.picks.Randy??='';
+    current.totalPoints.Randy??=null;current.recordedTotals.Randy??=null;current.dues.Randy??=0;
     current.revealed=revealed(current);
     return current;
   }).sort((a, b) => a.number - b.number);
   if (pool.weeks.length !== 18) throw new Error('The season must contain 18 weeks.');
   return {pool, rejectedChanges, revisions: Object.fromEntries(pool.weeks.map(w => [w.number, revision(w)]))};
 }
-export const readPoolCached = unstable_cache(readPool, ['pool-airtable-submissions-v1',process.env.AIRTABLE_BASE_ID||'unconfigured'], {revalidate:30,tags:['pool']});
+export const readPoolCached = unstable_cache(readPool, ['pool-airtable-randy-v2',process.env.AIRTABLE_BASE_ID||'unconfigured'], {revalidate:30,tags:['pool']});
 export async function saveWeek(week: Week, expected: number, userId: string, player?: Player) {
   const current = await readPool();
   const before = current.pool.weeks.find(w => w.number === week.number)!;
