@@ -1,11 +1,12 @@
-import {participants, historicalPlayers, players, type Player, type Pool, type Week} from './pool';
+import {participants, historicalPlayers, accountPlayers, players, type Player, type Pool, type Week} from './pool';
 export function submissions(w: Week): Record<Player, boolean> {
   return Object.fromEntries(players.map(p => [p, w.submitted?.[p] === true])) as Record<Player, boolean>;
 }
 // Replay older saves under their original roster so past drafts are not retroactively rejected.
 export const rosterChangedAt=Date.parse('2026-09-29T19:57:44Z');
 export const randyJoinedAt=Date.parse('2026-09-30T18:37:18Z');
-export function allSubmitted(w: Week, at=Infinity) {return (w.number<4||at<rosterChangedAt?historicalPlayers:at<randyJoinedAt?['Bryan','Kevin'] as const:participants(w)).every(p => submissions(w)[p])}
+export const aiJoinedAt=Date.parse('2026-10-03T01:03:34Z');
+export function allSubmitted(w: Week, at=Infinity) {return (w.number<4||at<rosterChangedAt?historicalPlayers:at<randyJoinedAt?['Bryan','Kevin'] as const:at<aiJoinedAt?accountPlayers:participants(w)).every(p => submissions(w)[p])}
 export function revealed(w: Week, at=Infinity) {
   // Weeks 1–2 were already public before this feature was introduced.
   return w.number <= 2 || w.revealed === true || allSubmitted(w,at);

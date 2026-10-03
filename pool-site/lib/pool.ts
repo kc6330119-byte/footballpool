@@ -1,6 +1,8 @@
 export const historicalPlayers=['Bryan','Ed','Mike','Kevin'] as const;
-export const players=[...historicalPlayers,'Randy'] as const;
-export const activePlayers=['Bryan','Kevin','Randy'] as const;
+export const computerPlayer='AI The Greek' as const;
+export const players=[...historicalPlayers,'Randy',computerPlayer] as const;
+export const accountPlayers=['Bryan','Kevin','Randy'] as const;
+export const activePlayers=[...accountPlayers,computerPlayer] as const;
 // Mike and Ed withdrew after Week 3; retain the original roster for historical weeks.
 export function participants(w:{number:number}):readonly Player[]{return w.number>=4?activePlayers:historicalPlayers}
 export type Player=typeof players[number];

@@ -3,14 +3,14 @@ import {createHmac} from 'node:crypto';
 import nodemailer from 'nodemailer';
 import {z} from 'zod';
 import {adminEmail,members} from './access';
-import {activePlayers,type Player} from './pool';
+import {accountPlayers,type Player} from './pool';
 import {weeklyReport} from './weekly-report';
 import {newsletterPdf} from './report-pdf';
 export function gmailUser(){return (process.env.GMAIL_USER || adminEmail()).trim().toLowerCase()}
 export function mailConfigured(){return z.string().email().safeParse(gmailUser()).success && !!process.env.GMAIL_APP_PASSWORD?.replace(/\s/g,'')}
 export async function reportRecipients(){
  const rows=await members();
- return activePlayers.map(player=>{
+ return accountPlayers.map(player=>{
   const row=rows.find(r=>r.fields['Player Name']===player);
   const email=String(row?.fields.Email||'').trim();
   return {player,email,available:row?.fields.Active===true && z.string().email().safeParse(email).success};

@@ -6,7 +6,8 @@
     "Ed",
     "Mike",
     "Kevin",
-    "Randy"
+    "Randy",
+    "AI The Greek"
   ],
   "teams": {
     "Young Guns": [
@@ -34,7 +35,8 @@
             "Ed": "Ole Miss",
             "Mike": "Louisville",
             "Kevin": "Ole Miss",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Louisville",
           "score": "Ole Miss 41 - Louisville 38",
@@ -52,7 +54,8 @@
             "Ed": "SMU",
             "Mike": "SMU",
             "Kevin": "SMU",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Push",
           "score": "SMU 27 - FSU 24",
@@ -70,7 +73,8 @@
             "Ed": "Oklahoma",
             "Mike": "Michigan",
             "Kevin": "Oklahoma",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Michigan",
           "score": "Michigan 17 - Oklahoma 10",
@@ -88,7 +92,8 @@
             "Ed": "Kentucky",
             "Mike": "Alabama",
             "Kevin": "Kentucky",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Alabama",
           "score": "Alabama 45 - Kentucky 17",
@@ -106,7 +111,8 @@
             "Ed": "Seahawks",
             "Mike": "Patriots",
             "Kevin": "Seahawks",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Patriots",
           "score": "Patriots 10 - Seahawks 13",
@@ -124,7 +130,8 @@
             "Ed": "Rams",
             "Mike": "49ers",
             "Kevin": "Rams",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "49ers",
           "score": "49ers 27 - Rams 7",
@@ -142,7 +149,8 @@
             "Ed": "Buccaneers",
             "Mike": "Bengals",
             "Kevin": "Bengals",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Bengals",
           "score": "Bentals 33 - Bucccaneers 27",
@@ -160,7 +168,8 @@
             "Ed": "Lions",
             "Mike": "Lions",
             "Kevin": "Lions",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Saints",
           "score": "Lions 31 - Saints 30",
@@ -178,7 +187,8 @@
             "Ed": "Jets",
             "Mike": "Jets",
             "Kevin": "Jets",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Jets",
           "score": "Jets 23 - Titans 10",
@@ -196,7 +206,8 @@
             "Ed": "Ravens",
             "Mike": "Ravens",
             "Kevin": "Colts",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Ravens",
           "score": "Ravens 41 - Colts 23",
@@ -214,7 +225,8 @@
             "Ed": "Falcons",
             "Mike": "Falcons",
             "Kevin": "Steelers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Steelers",
           "score": "Steelers 20 - Falcons 13",
@@ -232,7 +244,8 @@
             "Ed": "Bears",
             "Mike": "Panthers",
             "Kevin": "Panthers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Bears",
           "score": "Bears 59 - Panthers 37",
@@ -250,7 +263,8 @@
             "Ed": "Browns",
             "Mike": "Jaguars",
             "Kevin": "Browns",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Jaguars",
           "score": "Jaguars 34 - Browns 10",
@@ -268,7 +282,8 @@
             "Ed": "Bills",
             "Mike": "Bills",
             "Kevin": "Bills",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Bills",
           "score": "Bills 36 - Texans 31",
@@ -286,7 +301,8 @@
             "Ed": "Dolphins",
             "Mike": "Raiders",
             "Kevin": "Raiders",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Raiders",
           "score": "Raiders 27 - Dolphins 13",
@@ -304,7 +320,8 @@
             "Ed": "Vikings",
             "Mike": "Vikings",
             "Kevin": "Packers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Vikings",
           "score": "Vikings 39 - Packers 22",
@@ -322,7 +339,8 @@
             "Ed": "Commanders",
             "Mike": "Eagles",
             "Kevin": "Commanders",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Commanders",
           "score": "Eagles 24 - Commanders 22",
@@ -340,7 +358,8 @@
             "Ed": "Cardinals",
             "Mike": "Cardinals",
             "Kevin": "Cardinals",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Cardinals",
           "score": "Cardinals 26 - Chargers 14",
@@ -358,7 +377,8 @@
             "Ed": "Giants",
             "Mike": "Cowboys",
             "Kevin": "Cowboys",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Giants",
           "score": "Giants 28 - Cowboys 20",
@@ -376,7 +396,8 @@
             "Ed": "Broncos",
             "Mike": "Chiefs",
             "Kevin": "Broncos",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -388,14 +409,16 @@
         "Ed": 44.5,
         "Mike": 44.5,
         "Kevin": 44.5,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": 5,
         "Ed": 8,
         "Mike": 13,
         "Kevin": 7,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "Mike",
       "earnings": 20,
@@ -405,7 +428,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 20,
@@ -430,7 +454,8 @@
             "Ed": "LSU",
             "Mike": "LSU",
             "Kevin": "LSU",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Ole Miss",
           "score": "Ole Miss 32 - LSU 24",
@@ -448,7 +473,8 @@
             "Ed": "FSU",
             "Mike": "FSU",
             "Kevin": "Alabama",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "FSU",
           "score": "Alabama 50 - FSU 36",
@@ -466,7 +492,8 @@
             "Ed": "SMU",
             "Mike": "Louisville",
             "Kevin": "SMU",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Louisville",
           "score": "Louisville 41 - SMU 31",
@@ -484,7 +511,8 @@
             "Ed": "Florida",
             "Mike": "Florida",
             "Kevin": "Florida",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Florida",
           "score": "Florida 44 - Auburn 39",
@@ -502,7 +530,8 @@
             "Ed": "Lions",
             "Mike": "Bills",
             "Kevin": "Bills",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Bills",
           "score": "Bills 41 - Lions 31",
@@ -520,7 +549,8 @@
             "Ed": "Falcons",
             "Mike": "Panthers",
             "Kevin": "Panthers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Panthers",
           "score": "Panthers 34 - Falcons 3",
@@ -538,7 +568,8 @@
             "Ed": "Vikinigs",
             "Mike": "Bears",
             "Kevin": "Bears",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Vikings",
           "score": "Vikings 9 - Bears 3",
@@ -556,7 +587,8 @@
             "Ed": "Eagles",
             "Mike": "Eagles",
             "Kevin": "Eagles",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Titans",
           "score": "Eagles 24 - Titans 20",
@@ -574,7 +606,8 @@
             "Ed": "Steelers",
             "Mike": "Steelers",
             "Kevin": "Patriots",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Patriots",
           "score": "Patriots 20 - Steelers 3",
@@ -592,7 +625,8 @@
             "Ed": "Packers",
             "Mike": "Jets",
             "Kevin": "Jets",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Jets",
           "score": "Packers 20 - Jets 17",
@@ -610,7 +644,8 @@
             "Ed": "Browns",
             "Mike": "Buccaneers",
             "Kevin": "Buccaneers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Browns",
           "score": "Browns 23 - Buccaneers 19",
@@ -628,7 +663,8 @@
             "Ed": "Saints",
             "Mike": "Ravens",
             "Kevin": "Ravens",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Saints",
           "score": "Saints 24 - Ravens 17",
@@ -646,7 +682,8 @@
             "Ed": "Bengals",
             "Mike": "Bengals",
             "Kevin": "Bengals",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Bengals",
           "score": "Bengals 20 - Texans 6",
@@ -664,7 +701,8 @@
             "Ed": "Broncos",
             "Mike": "Jaguars",
             "Kevin": "Jaguars",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Broncos",
           "score": "Broncos 20 - Jaguars 13",
@@ -682,7 +720,8 @@
             "Ed": "Raiders",
             "Mike": "Raiders",
             "Kevin": "Chargers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Raiders",
           "score": "Raiders 26 - Chargers 14",
@@ -700,7 +739,8 @@
             "Ed": "Commanders",
             "Mike": "Commanders",
             "Kevin": "Commanders",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Cowboys",
           "score": "Cowboys 37 - Commanders 20",
@@ -718,7 +758,8 @@
             "Ed": "Cardinals",
             "Mike": "Cardinals",
             "Kevin": "Cardinals",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Seahawks",
           "score": "Seahawks 31 - Cardinals 7",
@@ -736,7 +777,8 @@
             "Ed": "Dolphiins",
             "Mike": "49ers",
             "Kevin": "Dolphins",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "49ers",
           "score": "49ers 35 - Dolphins 13",
@@ -754,7 +796,8 @@
             "Ed": "Chiefs",
             "Mike": "Colts",
             "Kevin": "Chiefs",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Colts",
           "score": "Chiefs 33 - Colts 30",
@@ -772,7 +815,8 @@
             "Ed": "Giants",
             "Mike": "Rams",
             "Kevin": "Giants",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "Rams",
           "score": "Rams 28 - Giants 6",
@@ -784,14 +828,16 @@
         "Ed": 37,
         "Mike": 50.5,
         "Kevin": 52,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": 10,
         "Ed": 7,
         "Mike": 11,
         "Kevin": 6,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "Mike",
       "earnings": 20,
@@ -801,7 +847,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 20,
@@ -826,7 +873,8 @@
             "Ed": "Tennessee",
             "Mike": "Tennessee",
             "Kevin": "Tennessee",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -844,7 +892,8 @@
             "Ed": "Georgia",
             "Mike": "Georgia",
             "Kevin": "Georgia",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -862,7 +911,8 @@
             "Ed": "Florida",
             "Mike": "Ole Miss",
             "Kevin": "Ole Miss",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -880,7 +930,8 @@
             "Ed": "LSU",
             "Mike": "LSU",
             "Kevin": "Texas A&M",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -898,7 +949,8 @@
             "Ed": "Packers",
             "Mike": "Packers",
             "Kevin": "Falcons",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -916,7 +968,8 @@
             "Ed": "Bills",
             "Mike": "Chargers",
             "Kevin": "Bills",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -934,7 +987,8 @@
             "Ed": "Browns",
             "Mike": "Panthers",
             "Kevin": "Panthers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -952,7 +1006,8 @@
             "Ed": "Lions",
             "Mike": "Jets",
             "Kevin": "Lions",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -970,7 +1025,8 @@
             "Ed": "Texans",
             "Mike": "Colts",
             "Kevin": "Texans",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -988,7 +1044,8 @@
             "Ed": "Chiefs",
             "Mike": "Dolphins",
             "Kevin": "Chiefs",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1006,7 +1063,8 @@
             "Ed": "Titanns",
             "Mike": "Titans",
             "Kevin": "Giants",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1024,7 +1082,8 @@
             "Ed": "Bengals",
             "Mike": "Bengals",
             "Kevin": "Bengals",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1042,7 +1101,8 @@
             "Ed": "Seahawks",
             "Mike": "Commanders",
             "Kevin": "Commanders",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1060,7 +1120,8 @@
             "Ed": "Jaguars",
             "Mike": "Jaguars",
             "Kevin": "Jaguars",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1078,7 +1139,8 @@
             "Ed": "49ers",
             "Mike": "49ers",
             "Kevin": "49ers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1096,7 +1158,8 @@
             "Ed": "Vikings",
             "Mike": "Buccaneers",
             "Kevin": "Buccaneers",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1114,7 +1177,8 @@
             "Ed": "Ravens",
             "Mike": "Cowboys",
             "Kevin": "Cowboys",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1132,7 +1196,8 @@
             "Ed": "Saints",
             "Mike": "Raiders",
             "Kevin": "Saints",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1150,7 +1215,8 @@
             "Ed": "Rams",
             "Mike": "Rams",
             "Kevin": "Rams",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1168,7 +1234,8 @@
             "Ed": "Bears",
             "Mike": "Eagles",
             "Kevin": "Eagles",
-            "Randy": ""
+            "Randy": "",
+            "AI The Greek": ""
           },
           "winner": "",
           "score": "",
@@ -1180,14 +1247,16 @@
         "Ed": 44,
         "Mike": 31.5,
         "Kevin": 45.5,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": 0,
         "Ed": 0,
         "Mike": 0,
         "Kevin": 0,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1197,7 +1266,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1215,14 +1285,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1232,7 +1304,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1250,14 +1323,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1267,7 +1342,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1285,14 +1361,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1302,7 +1380,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1320,14 +1399,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1337,7 +1418,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1355,14 +1437,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1372,7 +1456,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1390,14 +1475,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1407,7 +1494,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1425,14 +1513,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1442,7 +1532,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1460,14 +1551,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1477,7 +1570,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1495,14 +1589,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1512,7 +1608,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1530,14 +1627,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1547,7 +1646,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1565,14 +1665,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1582,7 +1684,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1600,14 +1703,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1617,7 +1722,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1635,14 +1741,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1652,7 +1760,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1670,14 +1779,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1687,7 +1798,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,
@@ -1705,14 +1817,16 @@
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "recordedTotals": {
         "Bryan": null,
         "Ed": null,
         "Mike": null,
         "Kevin": null,
-        "Randy": null
+        "Randy": null,
+        "AI The Greek": null
       },
       "winner": "",
       "earnings": 0,
@@ -1722,7 +1836,8 @@
         "Kevin": 5,
         "Bryan": 5,
         "Mike": 5,
-        "Randy": 0
+        "Randy": 0,
+        "AI The Greek": 0
       },
       "teamEarnings": {
         "Young Guns": 0,

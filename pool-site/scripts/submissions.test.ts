@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import seed from '../lib/seed.json';
 import {weeklyLeaders,historicalPlayers as players,type Pool,type Week} from '../lib/pool';
-import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt,randyJoinedAt} from '../lib/submissions';
+import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt,randyJoinedAt,aiJoinedAt} from '../lib/submissions';
 import {applyEvent} from '../lib/pick-events';
 import {diff,document} from '../lib/changes';
 import {deadlineUTC} from '../lib/deadline';
@@ -20,7 +20,7 @@ for(const viewer of [null,...players]){
  }
  assert.equal(view.note,'');assert.equal(view.winner,'');
 }
-assert.equal(visiblePool(pool,'Kevin').weeks[0].hiddenPlayers!.length,4,'Admin has no privacy bypass');
+assert.equal(visiblePool(pool,'Kevin').weeks[0].hiddenPlayers!.length,5,'Admin has no privacy bypass');
 const past=visiblePool({...seed,weeks:[seed.weeks[0],seed.weeks[1]]} as Pool,null);
 assert.equal(past.weeks[0].games[0].picks.Mike,seed.weeks[0].games[0].picks.Mike);
 let w=structuredClone(base);
@@ -45,7 +45,7 @@ assert.equal(completeEntry(incomplete,'Bryan'),false);
 assert.equal(applyEvent(incomplete,{kind:'player',player:'Bryan',changes:[{path:['submitted','Bryan'],value:true}]},time).accepted,false);
 incomplete.totalPoints.Bryan=20;incomplete.games[0].picks.Bryan='';
 assert.equal(completeEntry(incomplete,'Bryan'),false);
-const three=structuredClone(base);three.submitted={Bryan:true,Ed:true,Mike:true,Kevin:false,Randy:false};
+const three=structuredClone(base);three.submitted={Bryan:true,Ed:true,Mike:true,Kevin:false,Randy:false,'AI The Greek':false};
 const draft=applyEvent(three,{kind:'player',player:'Bryan',changes:[{path:['submitted','Bryan'],value:false}]},time);
 assert.equal(draft.accepted,true);assert.equal(revealed(draft.week),false);
 assert.equal(draft.week.submitted!.Bryan,false);
@@ -54,7 +54,7 @@ assert.equal(revealed(applyEvent(w,[{path:['submitted','Kevin'],value:false}],ti
 console.log('PASS: server redaction including admin, historical visibility, four required complete submissions, draft withdrawal, deadline privacy, post-submit lock, in-flight saves, admin corrections, and irreversible reveal.');
 
 const two=structuredClone(base);two.number=4;two.deadlineLocal='2099-10-01T23:59';two.totalPoints.Bryan=40;two.totalPoints.Kevin=45;
-two.submitted={Bryan:true,Kevin:false,Ed:false,Mike:false,Randy:false};
+two.submitted={Bryan:true,Kevin:false,Ed:false,Mike:false,Randy:false,'AI The Greek':false};
 assert.equal(revealed(two),false);
 const final=applyEvent(two,{kind:'player',player:'Kevin',changes:[{path:['submitted','Kevin'],value:true}]},rosterChangedAt+1000);
 assert.equal(final.accepted,true);assert.equal(revealed(final.week),true);
@@ -79,3 +79,16 @@ const third=applyEvent(rejoined,{kind:'player',player:'Randy',changes:diff(docum
 assert.equal(third.accepted,true);assert.equal(revealed(third.week),true);
 assert.equal(applyEvent(third.week,{kind:'player',player:'Randy',changes:[{path:['totalPoints','Randy'],value:43}]},randyJoinedAt+4).accepted,false);
 console.log('PASS: explicit Week 4 privacy reopening preserves existing entries, hides others from Randy/admin, requires Randy’s complete entry, then reveals and locks all three.');
+
+const aiWeek=structuredClone(rejoined);aiWeek.number=5;aiWeek.submitted!.Randy=true;
+assert.equal(revealed(aiWeek,aiJoinedAt-1),true,'Three humans revealed under the previous roster');
+assert.equal(revealed(aiWeek),false,'The AI entry is required for new weeks');
+const aiReady=structuredClone(aiWeek);for(const g of aiReady.games)g.picks['AI The Greek']=g.teams[1];
+aiReady.totalPoints['AI The Greek']=47;aiReady.submitted!['AI The Greek']=true;
+const fourth=applyEvent(aiWeek,diff(document(aiWeek),document(aiReady)),aiJoinedAt+1);
+assert.equal(fourth.accepted,true);assert.equal(revealed(fourth.week),true);
+assert.equal(completeEntry(fourth.week,'AI The Greek'),true);
+assert.equal(visiblePool({...pool,weeks:[aiWeek]},'Kevin').weeks[0].games[0].picks['AI The Greek'],'');
+const won=structuredClone(fourth.week);won.games[0].winner=won.games[0].teams[1];assert.deepEqual(weeklyLeaders(won),['AI The Greek']);
+assert.equal(revealed(third.week),true,'Previously revealed Week 4 stays revealed when AI joins');
+console.log('PASS: AI participation, pre-join replay, private entries, four-player reveal and eligible AI winner.');

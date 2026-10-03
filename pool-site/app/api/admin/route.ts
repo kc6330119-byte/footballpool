@@ -7,7 +7,7 @@ import {updateRow} from '@/lib/airtable';
 import {digest} from '@/lib/password';
 import {publicOrigin} from '@/lib/origin';
 import {weekSchema,sameOrigin} from '@/lib/validation';
-import {players,activePlayers} from '@/lib/pool';
+import {players,accountPlayers} from '@/lib/pool';
 import {revealed,submissions} from '@/lib/submissions';
 export async function GET(){try{const a=await access();if(!a.admin)return NextResponse.json({error:'Administrator access required.'},{status:403});const rows=await members();return NextResponse.json({members:rows.map(r=>({player:r.fields['Player Name'],email:r.fields.Email||''}))},{headers:{'Cache-Control':'no-store'}})}catch{return NextResponse.json({error:'Unable to load player access.'},{status:503})}}
 export async function POST(request:Request){
@@ -18,7 +18,7 @@ export async function POST(request:Request){
   if(b.action==='member'||b.action==='invite'){
    const v=z.object({player:z.enum(players),email:z.string().email().max(254)}).safeParse(b);
    if(!v.success)return NextResponse.json({error:'Enter a valid player and email.'},{status:400});
-   if(!activePlayers.includes(v.data.player as typeof activePlayers[number]))return NextResponse.json({error:'This player has withdrawn from the pool.'},{status:400});
+   if(!accountPlayers.includes(v.data.player as typeof accountPlayers[number]))return NextResponse.json({error:'This player has withdrawn from the pool.'},{status:400});
    const email=v.data.email.trim().toLowerCase();
    if(v.data.player==='Kevin'&&email!==adminEmail())return NextResponse.json({error:'Your administrator email is fixed in the site settings.'},{status:400});
    const rows=await members();
@@ -55,7 +55,7 @@ export async function POST(request:Request){
    for(const team of Object.keys(before.teamEarnings))if(!v.data.teamEarnings[team])v.data.teamEarnings[team]=before.teamEarnings[team];
    if(a.player&&(JSON.stringify(before.games.map(g=>g.picks[a.player!]))!==JSON.stringify(v.data.games.map(g=>g.picks[a.player!]))||before.totalPoints[a.player]!==v.data.totalPoints[a.player]))v.data.submitted[a.player]=false;
    const schedule=(w:typeof before)=>w.games.map(g=>({id:g.id,matchup:g.matchup,teams:g.teams}));
-   if(JSON.stringify(schedule(before))!==JSON.stringify(schedule(v.data)))v.data.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false,Randy:false};
+   if(JSON.stringify(schedule(before))!==JSON.stringify(schedule(v.data)))v.data.submitted={Bryan:false,Ed:false,Mike:false,Kevin:false,Randy:false,'AI The Greek':false};
   }
   const revision=await saveWeek(v.data,b.revision,a.user.userId);
   if(revision===null)return NextResponse.json({error:'Someone updated this week. Reload the latest data before saving.'},{status:409});

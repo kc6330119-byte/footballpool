@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {correct,standings,weeklyLeaders} from '../lib/pool.ts';
+import {correct,standings,weeklyLeaders,historicalPlayers} from '../lib/pool.ts';
 import {deadlineUTC,isClosed} from '../lib/deadline.ts';
 const pool=JSON.parse(readFileSync(new URL('../lib/seed.json',import.meta.url)));
-assert.deepEqual(standings(pool).map(x=>[x.name,x.correct,x.earnings]),[['Mike',24,40],['Bryan',15,0],['Ed',15,0],['Kevin',13,0]]);
-for(const w of pool.weeks.slice(0,3))for(const p of pool.players)assert.equal(correct(w,p),w.recordedTotals[p]);
+assert.deepEqual(standings(pool).map(x=>[x.name,x.correct,x.earnings]),[['Mike',24,40],['Bryan',15,0],['Ed',15,0],['Kevin',13,0],['Randy',0,0],['AI The Greek',0,0]]);
+for(const w of pool.weeks.slice(0,3))for(const p of historicalPlayers)assert.equal(correct(w,p),w.recordedTotals[p]);
 assert.equal(correct(pool.weeks[3],'Mike'),0);
 assert.equal(new Date(deadlineUTC('2026-09-23T23:59')).toISOString(),'2026-09-24T04:59:00.000Z');
 assert.equal(new Date(deadlineUTC('2026-11-04T23:59')).toISOString(),'2026-11-05T05:59:00.000Z');
