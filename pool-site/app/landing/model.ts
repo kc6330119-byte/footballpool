@@ -1,10 +1,10 @@
 import type {Pool} from '@/lib/pool';
+import {currentWeek} from '@/lib/current-week';
 import {standings} from '@/lib/pool';
 import {deadlineUTC} from '@/lib/deadline';
 import {archive,historicalLeaders} from '@/lib/history';
 export function landingModel(pool:Pool,fromAirtable:boolean){
- const populated=pool.weeks.filter(w=>w.games.length);
- const week=populated.find(w=>deadlineUTC(w.deadlineLocal)>=Date.now())||populated.at(-1)||pool.weeks[0];
+ const week=pool.weeks.find(w=>w.number===currentWeek(pool))!;
  const ranks=standings(pool);
  const settled=pool.weeks.filter(w=>w.winner).at(-1);
  const previous=standings({...pool,weeks:pool.weeks.filter(w=>w.number!==(settled?.number||0))});
