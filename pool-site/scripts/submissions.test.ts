@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import seed from '../lib/seed.json';
 import {weeklyLeaders,historicalPlayers as players,type Pool,type Week} from '../lib/pool';
-import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt,randyJoinedAt,aiJoinedAt} from '../lib/submissions';
+import {visiblePool,revealed,submissions,completeEntry,rosterChangedAt,randyJoinedAt,aiJoinedAt,mikeRejoinedAt} from '../lib/submissions';
 import {applyEvent} from '../lib/pick-events';
 import {diff,document} from '../lib/changes';
 import {deadlineUTC} from '../lib/deadline';
@@ -92,3 +92,22 @@ assert.equal(visiblePool({...pool,weeks:[aiWeek]},'Kevin').weeks[0].games[0].pic
 const won=structuredClone(fourth.week);won.games[0].winner=won.games[0].teams[1];assert.deepEqual(weeklyLeaders(won),['AI The Greek']);
 assert.equal(revealed(third.week),true,'Previously revealed Week 4 stays revealed when AI joins');
 console.log('PASS: AI participation, pre-join replay, private entries, four-player reveal and eligible AI winner.');
+
+const five=structuredClone(aiReady);five.revealed=false;
+assert.equal(revealed(five),false,'Four submissions do not reveal Week 5 after Mike returns');
+assert.equal(revealed(five,mikeRejoinedAt-1),true,'Old four-player events replay with the previous roster');
+for(const viewer of [null,'Kevin','Mike'] as const){
+ const v=visiblePool({...pool,weeks:[five]},viewer).weeks[0];
+ assert.equal(v.games[0].picks.Bryan,'','Even admin and Mike must wait');
+}
+const missingTotal=structuredClone(five);missingTotal.totalPoints.Mike=null;
+assert.equal(applyEvent(missingTotal,{kind:'player',player:'Mike',changes:[{path:['submitted','Mike'],value:true}]},mikeRejoinedAt+1).accepted,false);
+const mikeReady=structuredClone(five);for(const g of mikeReady.games)g.picks.Mike=g.teams[0];
+mikeReady.totalPoints.Mike=44;mikeReady.submitted!.Mike=true;
+const fifth=applyEvent(five,{kind:'player',player:'Mike',changes:diff(document(five),document(mikeReady))},mikeRejoinedAt+1);
+assert.equal(fifth.accepted,true);assert.equal(revealed(fifth.week),true);
+assert.equal(applyEvent(fifth.week,{kind:'player',player:'Mike',changes:[{path:['totalPoints','Mike'],value:45}]},mikeRejoinedAt+2).accepted,false);
+const weekFour=structuredClone(five);weekFour.number=4;assert.equal(revealed(weekFour),true,'Week 4 still requires only its original four entrants');
+const mikeWinner=structuredClone(fifth.week);for(const g of mikeWinner.games){g.winner=g.teams[0];for(const p of ['Bryan','Kevin','Randy','AI The Greek'] as const)g.picks[p]=g.teams[1];}
+assert.deepEqual(weeklyLeaders(mikeWinner),['Mike'],'Mike is eligible to win from Week 5');
+console.log('PASS: Mike returns for Week 5, requires five complete submissions, admin privacy, final-submission lock, replay and Week 4 preservation.');

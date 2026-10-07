@@ -72,7 +72,7 @@ export async function readPool() {
   if (pool.weeks.length !== 18) throw new Error('The season must contain 18 weeks.');
   return {pool, rejectedChanges, revisions: Object.fromEntries(pool.weeks.map(w => [w.number, revision(w)]))};
 }
-export const readPoolCached = unstable_cache(readPool, ['pool-airtable-ai-v3',process.env.AIRTABLE_BASE_ID||'unconfigured'], {revalidate:30,tags:['pool']});
+export const readPoolCached = unstable_cache(readPool, ['pool-airtable-mike-return-v4',process.env.AIRTABLE_BASE_ID||'unconfigured'], {revalidate:30,tags:['pool']});
 export async function saveWeek(week: Week, expected: number, userId: string, player?: Player) {
   const current = await readPool();
   const before = current.pool.weeks.find(w => w.number === week.number)!;

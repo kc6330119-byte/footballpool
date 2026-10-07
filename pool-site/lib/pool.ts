@@ -1,10 +1,12 @@
 export const historicalPlayers=['Bryan','Ed','Mike','Kevin'] as const;
 export const computerPlayer='AI The Greek' as const;
 export const players=[...historicalPlayers,'Randy',computerPlayer] as const;
-export const accountPlayers=['Bryan','Kevin','Randy'] as const;
+export const weekFourAccountPlayers=['Bryan','Kevin','Randy'] as const;
+export const weekFourPlayers=[...weekFourAccountPlayers,computerPlayer] as const;
+export const accountPlayers=[...weekFourAccountPlayers,'Mike'] as const;
 export const activePlayers=[...accountPlayers,computerPlayer] as const;
-// Mike and Ed withdrew after Week 3; retain the original roster for historical weeks.
-export function participants(w:{number:number}):readonly Player[]{return w.number>=4?activePlayers:historicalPlayers}
+// Preserve past rosters; Mike returns starting in Week 5.
+export function participants(w:{number:number}):readonly Player[]{return w.number>=5?activePlayers:w.number===4?weekFourPlayers:historicalPlayers}
 export type Player=typeof players[number];
 export type Game={id:string;matchup:string;teams:string[];picks:Record<Player,string>;winner:string;score:string;kickoff:string};
 export type Week={submitted?:Record<Player,boolean>;revealed?:boolean;hiddenPlayers?:Player[];number:number;games:Game[];totalPoints:Record<Player,number|null>;recordedTotals:Record<Player,number|null>;winner:string;earnings:number;note:string;dues:Record<Player,number>;teamEarnings:Record<string,number>;actualTotal:number|null;locked:boolean;deadlineLocal:string};

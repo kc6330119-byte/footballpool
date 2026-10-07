@@ -39,3 +39,5 @@ Google app password instructions: https://support.google.com/accounts/answer/185
 ## Current roster
 
 From Week 4 of 2026–2027, Bryan and Kevin are the participating players. Both must submit every pick and total points before picks reveal and lock. The administrator can still correct revealed picks. Weeks 1–3 and historical standings retain all four players. Only Bryan and Kevin appear in newsletter distribution. Mike and Ed's Airtable `Active` flags are disabled; authentication checks this flag on every request, including existing sessions. Public results remain available to anonymous visitors.
+
+Mike returned in Week 5. Active human accounts and newsletter recipients are Bryan, Kevin, Randy, and Mike; AI The Greek is the fifth pool entry without an email account. Week 5 onward requires all five complete submissions to reveal picks. Week 4 retains its four-player roster, and Weeks 1–3 retain their historical roster. Ed remains inactive.
