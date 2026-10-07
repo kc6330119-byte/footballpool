@@ -15,3 +15,23 @@
 @media(max-width:560px){.champion-grid{grid-template-columns:1fr}.champion-card{min-height:180px}.history-summary{flex-direction:column;gap:12px}.history-page .page-heading>.button{margin-top:18px}.site-nav{font-size:14px}.history-page .section-heading{flex-wrap:wrap}}
 .member-grid form{flex-wrap:wrap}.member-grid form>div{flex-basis:100%}.member-grid input[readonly]{font-size:12px;width:100%}
 .newsletter-dialog{width:calc(100vw - 32px)!important;max-width:1100px!important;max-height:94vh;overflow:auto;background:#f5f4ee;padding:28px!important;display:block!important}.newsletter-dialog [data-slot=dialog-title]{font:28px Georgia,serif;color:#143d2c;margin-bottom:9px}.newsletter-dialog [data-slot=dialog-description]{font-size:14px;color:#58675c;max-width:750px;line-height:1.6;margin-bottom:20px}.newsletter-layout{display:grid;grid-template-columns:280px 1fr;gap:24px;margin-top:18px}.newsletter-controls fieldset{border:0;padding:0;margin:0}.newsletter-controls legend{font-weight:750;margin-bottom:14px}.newsletter-recipient{display:flex;gap:12px;align-items:flex-start;padding:16px 0;border-bottom:1px solid #d6ddd2;cursor:pointer}.newsletter-recipient input{width:19px;height:19px;accent-color:#1d6141;margin-top:2px;flex-shrink:0}.newsletter-recipient strong{font-size:14px}.newsletter-recipient small{display:block;font-size:11px;color:#596b5c;overflow-wrap:anywhere;margin-top:4px}.newsletter-buttons{display:flex;gap:10px;margin-top:20px}.newsletter-preview{min-width:0;border:1px solid #c9cfc1;background:#e9e7df}.newsletter-preview iframe{display:block;width:100%;height:57vh;border:0;background:#e9e7df}.newsletter-subject{padding:14px;margin:0;font-size:12px;line-height:1.5;background:#e0e7d9;border-bottom:1px solid #c9cfc1}.newsletter-reload{display:flex;align-items:center;gap:7px;font-size:12px}.newsletter-controls .notice{font-size:12px;line-height:1.6}.newsletter-controls .help-text{font-size:12px;line-height:1.6}@media(max-width:760px){.newsletter-layout{grid-template-columns:1fr}.newsletter-dialog{padding:22px!important}.newsletter-preview iframe{height:65vh}.newsletter-dialog [data-slot=dialog-title]{font-size:25px}.actions{flex-wrap:wrap}}
+
+/* The picks sheet scrolls independently of its always-visible action bar. */
+.editor-dialog.picks-dialog{padding:0!important;display:flex!important;flex-direction:column;top:calc(var(--picks-viewport-top,0px) + var(--picks-viewport-height,100dvh)/2);height:min(850px,calc(var(--picks-viewport-height,100dvh) - 32px));max-height:calc(var(--picks-viewport-height,100dvh) - 32px)}
+.picks-dialog form{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+.picks-dialog .form-scroll{flex:1;min-height:0;max-height:none;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:24px;scroll-padding:16px}
+.picks-dialog [data-slot=dialog-header]{padding-right:28px;text-align:left}
+.picks-dialog .form-actions{flex-shrink:0;margin:0;padding:12px 20px;background:#f9fbf9;box-shadow:0 -4px 12px #123e2f08}
+.picks-dialog .form-actions .button{min-height:44px}
+.picks-dialog .error{flex-shrink:0;margin:0;padding:8px 20px;max-height:20%;overflow:auto}
+.picks-dialog [data-slot=dialog-close]{width:44px;height:44px;top:4px;right:4px;display:grid;place-items:center;background:#f9fbf9}
+.picks-dialog input,.picks-dialog [data-slot=select-trigger]{font-size:16px;min-height:44px}
+@media(max-width:760px),(max-height:500px) and (pointer:coarse){
+ .editor-dialog.picks-dialog{top:var(--picks-viewport-top,0px);left:0;--tw-translate-x:0px;--tw-translate-y:0px;transform:none!important;translate:none!important;width:100%!important;max-width:none!important;height:var(--picks-viewport-height,100dvh);max-height:var(--picks-viewport-height,100dvh);border:0;border-radius:0;animation:none!important}
+ .picks-dialog .form-scroll{padding:20px max(16px,env(safe-area-inset-right)) 20px max(16px,env(safe-area-inset-left))}
+ .picks-dialog .form-actions{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px max(12px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+ .picks-dialog .form-actions .button{padding:10px 8px;font-size:14px}
+}
+@media(max-height:500px) and (pointer:coarse){
+ .picks-dialog .pick-edit{grid-template-columns:1fr minmax(160px,35%);padding:10px 0}
+}
