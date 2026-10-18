@@ -46,7 +46,7 @@ export async function newsletterPdf(report:ReturnType<typeof weeklyReport>){
  y-=10;paragraph(data.winnerLabel,9,bold,gold);paragraph(data.headline,27,display,green);paragraph(data.intro,11);paragraph('Weekly winner: '+data.winnerText,11,bold);
  if(data.note)paragraph("Commissioner's note: "+data.note,10);
  // Only allow the three bundled images. No remote fetches or caller-controlled file paths.
- if(!['namath.jpeg','butkus.jpeg','walker.jpeg'].includes(data.photo))throw new Error('Unknown newsletter photo');
+ if(!['namath.jpeg','butkus.jpeg','walker.jpeg','lambert.jpeg'].includes(data.photo))throw new Error('Unknown newsletter photo');
  const image=await pdf.embedJpg(await readFile(path.join(process.cwd(),'public/newsletter',data.photo)));
  const scale=Math.min(540/image.width,185/image.height),width=image.width*scale,height=image.height*scale;
  room(height+40);y-=8;page.drawImage(image,{x:(612-width)/2,y:y-height,width,height});y-=height+8;
