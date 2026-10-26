@@ -25,7 +25,7 @@ export function weeklyReport(pool: Pool, number: number, origin: string) {
  const solo = week.games.filter(g=>g.winner && g.winner!=='Push' && players.filter(p=>g.picks[p]===g.winner).length===1);
  const sweeps = week.games.filter(g=>g.winner && g.winner!=='Push' && players.every(p=>g.picks[p]===g.winner)).length;
  const photos = [{file:'namath.jpeg',width:300,alt:'Vintage black-and-white football photograph of a quarterback passing under pressure.'},{file:'butkus.jpeg',width:640,alt:'Vintage black-and-white football photograph of a tackle at the line.'},{file:'walker.jpeg',width:300,alt:'Vintage black-and-white football photograph of a runner leaping over defenders.'}];
- const photo=number<7?photos[(number-1)%3]:[{file:'lambert.jpeg',width:300,alt:'Color portrait of Jack Lambert wearing his football helmet and uniform.'},...photos][(number-7)%4];
+ const photo=number<7?photos[(number-1)%3]:[{file:'lambert.jpeg',width:300,alt:'Black-and-white portrait of Jack Lambert without his helmet, wearing his number 58 football jersey.'},...photos][(number-7)%4];
  const link = `${new URL(origin).origin}/pool?tab=picks&week=${number}`;
  const browserLink = `${new URL(origin).origin}/newsletter/${number}`;
  const intro = winner ? `${winner} has the week's bragging rights${week.winner ? ` and ${dollars(week.earnings)} in recorded earnings` : '; the payout is awaiting the administrator'}. ${complete?'Every spread result is in.':`${results} of ${week.games.length} spread results are entered; the recorded winner is shown while the remaining results are pending.`}` : `${results} of ${week.games.length} spread results are entered. ${complete?'The tiebreaker still has a say.':'There is still football left on the board.'}`;
